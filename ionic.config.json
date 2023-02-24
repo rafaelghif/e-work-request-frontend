@@ -1,0 +1,7 @@
+{
+  "name": "e-work-request-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
