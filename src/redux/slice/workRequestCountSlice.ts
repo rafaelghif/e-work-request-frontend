@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { errorToast } from "../../services/toast-service";
 import { getWorkRequestCountService } from "../../services/work-request-service";
 
 interface WorkRequestCount {
@@ -14,15 +13,12 @@ const initialState: WorkRequestCount = {
     error: null
 }
 
-const fetchWorkRequestCount = createAsyncThunk("workRequestCount/fetchWorkRequestCount", async () => {
-    try {
+const fetchWorkRequestCount = createAsyncThunk("workRequestCount/fetchWorkRequestCount",
+    async () => {
         const response = await getWorkRequestCountService();
         return response.data;
-    } catch (err) {
-        await errorToast(err);
-        return 0;
     }
-});
+);
 
 export const workRequestCountSlice = createSlice({
     name: "workRequestCount",
