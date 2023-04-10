@@ -2,9 +2,12 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'e-work-request-frontend',
+  appName: 'E-Work Request',
   webDir: 'build',
-  bundledWebRuntime: false
+  bundledWebRuntime: true,
+  server: {
+    cleartext: true
+  }
 };
 
 export default config;
