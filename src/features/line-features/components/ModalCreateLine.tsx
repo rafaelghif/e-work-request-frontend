@@ -17,7 +17,7 @@ const ModalCreateLine: React.FC<ModalCreateLineProps> = ({ isOpen, onDidDismiss 
     const [formData, setFormData] = useState<CreateLineInterface>(initialValue);
     const { mutate } = useCreateLine();
 
-    const handleChangeInput = (key: keyof CreateLineInterface, value: string | boolean) => {
+    const handleChangeInput = (key: keyof CreateLineInterface, value: string | number | boolean) => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 

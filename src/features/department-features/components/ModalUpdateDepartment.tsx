@@ -14,7 +14,7 @@ const ModalUpdateDepartment: React.FC<ModalUpdateDepartmentProps> = ({ data, isO
     const [formData, setFormData] = useState<DepartmentInterface>(data!);
     const { mutate } = useUpdateDepartment();
 
-    const handleChangeInput = (key: keyof DepartmentInterface, value: string | boolean) => {
+    const handleChangeInput = (key: keyof DepartmentInterface, value: string | number | boolean) => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 

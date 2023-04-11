@@ -55,7 +55,7 @@ const CreateWorkRequestForm: React.FC = () => {
             </IonItem>
             <IonItem>
                 <IonLabel position="floating">Qty</IonLabel>
-                <IonInput type="number" value={formData.qty} onIonChange={(e) => handleChangeInput("qty", parseInt(e.detail.value!))} />
+                <IonInput type="number" value={formData.qty} onIonChange={(e) => handleChangeInput("qty", parseInt(e.detail.value?.toString()!))} />
             </IonItem>
             <IonItem>
                 <IonLabel position="stacked">Except Due Date</IonLabel>

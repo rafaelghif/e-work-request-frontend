@@ -50,7 +50,7 @@ const ModalUpdateRegistrationNumber: React.FC<ModalCreateRegistrationNumberProps
                 </IonItem>
                 <IonItem>
                     <IonLabel position="floating">Last Number</IonLabel>
-                    <IonInput type="number" value={formData?.lastNumber} onIonChange={(e) => handleChangeInput("lastNumber", parseInt(e.detail.value!))} required />
+                    <IonInput type="number" value={formData?.lastNumber} onIonChange={(e) => handleChangeInput("lastNumber", e.detail.value!)} required />
                 </IonItem>
                 <IonButton type="submit" expand="block" className="mt-3">Submit</IonButton>
             </form>

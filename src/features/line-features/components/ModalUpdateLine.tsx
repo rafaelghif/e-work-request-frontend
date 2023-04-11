@@ -16,7 +16,7 @@ const ModalUpdateLine: React.FC<ModalCreateLineProps> = ({ data, isOpen, onDidDi
     const [formData, setFormData] = useState<LineInterface>(data!);
     const { mutate } = useUpdateLine();
 
-    const handleChangeInput = (key: keyof LineInterface, value: string | boolean) => {
+    const handleChangeInput = (key: keyof LineInterface, value: string | number | boolean) => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 

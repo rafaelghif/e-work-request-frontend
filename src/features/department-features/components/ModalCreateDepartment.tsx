@@ -15,7 +15,7 @@ const ModalCreateDepartment: React.FC<ModalCreateDepartmentProps> = ({ isOpen, o
     const [formData, setFormData] = useState<CreateDepartmentInterface>(initialValue);
     const { mutate } = useCreateDepartment();
 
-    const handleChangeInput = (key: keyof CreateDepartmentInterface, value: string | boolean) => {
+    const handleChangeInput = (key: keyof CreateDepartmentInterface, value: string | number | boolean) => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 

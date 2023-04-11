@@ -19,7 +19,7 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({ isOpen, onDidDismiss 
     const [formData, setFormData] = useState<CreateUserInterface>(initialValue);
     const { mutate } = useCreateUser();
 
-    const handleChangeInput = (key: keyof CreateUserInterface, value: string | boolean) => {
+    const handleChangeInput = (key: keyof CreateUserInterface, value: string | number | boolean) => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 

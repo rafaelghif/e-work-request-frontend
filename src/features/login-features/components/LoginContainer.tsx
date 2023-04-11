@@ -14,7 +14,7 @@ const LoginContainer: React.FC = () => {
         mutate(formData);
     }
 
-    const handleChangeInput = (key: keyof LoginInterface, value: string) => {
+    const handleChangeInput = (key: keyof LoginInterface, value: string | number) => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 

@@ -18,7 +18,7 @@ const ModalUpdateUser: React.FC<ModalUpdateUserProps> = ({ data, isOpen, onDidDi
     const [formData, setFormData] = useState<UpdateUserInterface>(data!);
     const { mutate } = useUpdateUser();
 
-    const handleChangeInput = (key: keyof UpdateUserInterface, value: string | boolean) => {
+    const handleChangeInput = (key: keyof UpdateUserInterface, value: string | number | boolean) => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 

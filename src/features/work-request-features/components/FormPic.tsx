@@ -56,7 +56,7 @@ export const FormPic: React.FC<FormAsFormPicProps> = ({ data, onDidDismiss }) =>
                     <div className="w-9/12">
                         <IonItem>
                             <IonLabel position="floating">Time Taken</IonLabel>
-                            <IonInput type="number" min={1} value={timeTaken} onIonChange={(e) => handleChangeTimeTaken(parseInt(e.detail.value!))} />
+                            <IonInput type="number" min={1} value={timeTaken} onIonChange={(e) => handleChangeTimeTaken(parseInt(e.detail.value?.toString()!))} />
                         </IonItem>
                     </div>
                     <div className="w-3/12">
