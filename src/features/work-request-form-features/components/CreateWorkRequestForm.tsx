@@ -1,4 +1,4 @@
-import { IonItem, IonLabel, IonInput, IonTextarea, IonSpinner, IonButton, IonNote } from "@ionic/react";
+import { IonItem, IonInput, IonTextarea, IonSpinner, IonButton } from "@ionic/react";
 import { lazy, Suspense, useEffect, useState } from "react";
 import SelectMultipleDepartment from "../../../components/SelectMultipleDepartment";
 import { useAppSelector } from "../../../redux/hook";
@@ -36,48 +36,38 @@ const CreateWorkRequestForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit}>
             <IonItem className="mt-2">
-                <IonLabel position="stacked">Registration Number Type</IonLabel>
                 <Suspense fallback={<IonSpinner name="crescent" />}>
                     <SelectRegistrationNumber value={formData.RegistrationNumberId} handleChange={(registrationNumberId) => handleChangeInput("RegistrationNumberId", registrationNumberId)} />
                 </Suspense>
             </IonItem>
             <IonItem>
-                <IonLabel position="floating">Title</IonLabel>
-                <IonInput type="text" value={formData.title} onIonChange={(e) => handleChangeInput("title", e.detail.value!)} />
+                <IonInput type="text" value={formData.title} label="Title" labelPlacement="floating" onIonChange={(e) => handleChangeInput("title", e.detail.value!)} />
             </IonItem>
             <IonItem>
-                <IonLabel position="floating">Description</IonLabel>
-                <IonTextarea value={formData.description} onIonChange={(e) => handleChangeInput("description", e.detail.value!)} />
+                <IonTextarea value={formData.description} label="Description" labelPlacement="floating" onIonChange={(e) => handleChangeInput("description", e.detail.value!)} />
             </IonItem>
             <IonItem>
-                <IonLabel position="floating">M/C Jig Tool No</IonLabel>
-                <IonInput type="text" value={formData.jigToolNo} onIonChange={(e) => handleChangeInput("jigToolNo", e.detail.value!)} />
+                <IonInput type="text" value={formData.jigToolNo} label="M/C Jig Tool No" labelPlacement="floating" onIonChange={(e) => handleChangeInput("jigToolNo", e.detail.value!)} />
             </IonItem>
             <IonItem>
-                <IonLabel position="floating">Qty</IonLabel>
-                <IonInput type="number" value={formData.qty} onIonChange={(e) => handleChangeInput("qty", parseInt(e.detail.value?.toString()!))} />
+                <IonInput type="number" value={formData.qty} label="Qty" labelPlacement="floating" onIonChange={(e) => handleChangeInput("qty", parseInt(e.detail.value?.toString()!))} />
             </IonItem>
             <IonItem>
-                <IonLabel position="stacked">Except Due Date</IonLabel>
-                <IonInput type="date" value={formData.expectDueDate} onIonChange={(e) => handleChangeInput("expectDueDate", e.detail.value!)} />
+                <IonInput type="date" value={formData.expectDueDate} label="Except Due Date" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("expectDueDate", e.detail.value!)} />
             </IonItem>
             <IonItem>
-                <IonLabel position="stacked">Requester Department</IonLabel>
                 <Suspense fallback={<IonSpinner name="crescent" />}>
-                    <SelectDepartment value={formData.RequesterDepartmentId} handleChange={(departmentId) => handleChangeInputRequestDepartment("RequesterDepartmentId", departmentId)} />
+                    <SelectDepartment value={formData.RequesterDepartmentId} label="Requester Department" handleChange={(departmentId) => handleChangeInputRequestDepartment("RequesterDepartmentId", departmentId)} />
                 </Suspense>
             </IonItem>
             <IonItem>
-                <IonLabel position="stacked">Requester Line</IonLabel>
                 <Suspense fallback={<IonSpinner name="crescent" />}>
-                    <SelectLine value={formData.RequesterLineId} departmentId={formData.RequesterDepartmentId} handleChange={(lineId) => handleChangeInput("RequesterLineId", lineId)} />
+                    <SelectLine value={formData.RequesterLineId} label="Requester Line" departmentId={formData.RequesterDepartmentId} handleChange={(lineId) => handleChangeInput("RequesterLineId", lineId)} />
                 </Suspense>
-                <IonNote slot="helper">If you have a line, select it. </IonNote>
             </IonItem>
             <IonItem>
-                <IonLabel position="stacked">Assignee Department</IonLabel>
                 <Suspense fallback={<IonSpinner name="crescent" />}>
-                    <SelectMultipleDepartment value={formData.AssigneeDepartmentIds} handleChange={(department) => handleChangeInput("AssigneeDepartmentIds", department)} />
+                    <SelectMultipleDepartment value={formData.AssigneeDepartmentIds} label="Assignee Department" handleChange={(department) => handleChangeInput("AssigneeDepartmentIds", department)} />
                 </Suspense>
             </IonItem>
             <IonButton type="submit" expand="block" fill="clear" className="mt-3">Submit</IonButton>

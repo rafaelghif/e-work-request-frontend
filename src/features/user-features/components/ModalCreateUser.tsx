@@ -1,4 +1,4 @@
-import { IonButton, IonInput, IonItem, IonLabel, IonSelect, IonSelectOption, IonSpinner } from "@ionic/react";
+import { IonButton, IonInput, IonItem, IonSelect, IonSelectOption, IonSpinner } from "@ionic/react";
 import { lazy, Suspense, useState } from "react";
 import Modal from "../../../components/Modal";
 import useCreateUser from "../hooks/useCreateUser";
@@ -34,43 +34,35 @@ const ModalCreateUser: React.FC<ModalCreateUserProps> = ({ isOpen, onDidDismiss 
         <Modal isOpen={isOpen} title="Create User" onDidDismiss={() => onDidDismiss()}>
             <form onSubmit={handleSubmit}>
                 <IonItem>
-                    <IonLabel position="floating">BadgeId</IonLabel>
-                    <IonInput type="text" value={formData.badgeId} minlength={8} maxlength={8} onIonChange={(e) => handleChangeInput("badgeId", e.detail.value!)} required />
+                    <IonInput type="text" value={formData.badgeId} label="BadgeId" labelPlacement="floating" minlength={8} maxlength={8} onIonChange={(e) => handleChangeInput("badgeId", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="floating">Password</IonLabel>
-                    <IonInput type="password" value={formData.password} onIonChange={(e) => handleChangeInput("password", e.detail.value!)} required />
+                    <IonInput type="password" value={formData.password} label="Password" labelPlacement="floating" onIonChange={(e) => handleChangeInput("password", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="floating">Name</IonLabel>
-                    <IonInput type="text" value={formData.name} onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
+                    <IonInput type="text" value={formData.name} label="Name" labelPlacement="floating" onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="floating">Email</IonLabel>
-                    <IonInput type="email" value={formData.email} onIonChange={(e) => handleChangeInput("email", e.detail.value!)} />
+                    <IonInput type="email" value={formData.email} label="Email" labelPlacement="floating" onIonChange={(e) => handleChangeInput("email", e.detail.value!)} />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="stacked">Role</IonLabel>
-                    <IonSelect value={formData.role} onIonChange={(e) => handleChangeInput("role", e.detail.value!)}>
+                    <IonSelect value={formData.role} label="Role" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("role", e.detail.value!)}>
                         <IonSelectOption value="BASIC">Basic</IonSelectOption>
                         <IonSelectOption value="ADMIN">Admin</IonSelectOption>
                         <IonSelectOption value="SUPER USER">Super User</IonSelectOption>
                     </IonSelect>
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="stacked">Department</IonLabel>
                     <Suspense fallback={<IonSpinner name="crescent" />}>
                         <SelectDepartment value={formData.DepartmentId} handleChange={(departmentId) => handleChangeInput("DepartmentId", departmentId)} />
                     </Suspense>
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="stacked">Section</IonLabel>
                     <Suspense fallback={<IonSpinner name="crescent" />}>
                         <SelectSection value={formData.SectionId} departmentId={formData.DepartmentId} handleChange={(sectionId) => handleChangeInput("SectionId", sectionId)} />
                     </Suspense>
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="stacked">Line</IonLabel>
                     <Suspense fallback={<IonSpinner name="crescent" />}>
                         <SelectLine value={formData.LineId} departmentId={formData.DepartmentId} handleChange={(lineId) => handleChangeInput("LineId", lineId)} />
                     </Suspense>

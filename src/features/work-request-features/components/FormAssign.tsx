@@ -1,4 +1,4 @@
-import { IonButton, IonItem, IonLabel, IonSelect, IonSelectOption, IonSpinner, IonTextarea } from "@ionic/react";
+import { IonButton, IonItem, IonSelect, IonSelectOption, IonSpinner, IonTextarea } from "@ionic/react";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { WorkRequestInterface } from "../../../types/work-request-type";
 import useAssignTicket from "../hooks/useAssignTicket";
@@ -36,8 +36,7 @@ export const FormAssign: React.FC<FormAssignProps> = ({ data, onDidDismiss }) =>
     return (
         <form onSubmit={handleSubmit}>
             <IonItem>
-                <IonLabel position="stacked">Status</IonLabel>
-                <IonSelect value={formData.ticketStatus} onIonChange={(e) => handleChangeInput("ticketStatus", e.detail.value!)}>
+                <IonSelect value={formData.ticketStatus} label="Status" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("ticketStatus", e.detail.value!)}>
                     <IonSelectOption value="Progress">Progress</IonSelectOption>
                     <IonSelectOption value="Reject">Reject</IonSelectOption>
                 </IonSelect>
@@ -45,7 +44,6 @@ export const FormAssign: React.FC<FormAssignProps> = ({ data, onDidDismiss }) =>
             {formData.ticketStatus === "Progress" ? (
                 <>
                     <IonItem>
-                        <IonLabel position="stacked">PIC</IonLabel>
                         <Suspense fallback={<IonSpinner name="crescent" />}>
                             <SelectPic value={formData.PersonInChargeId} handleChange={(personInChargeId) => handleChangeInput("PersonInChargeId", personInChargeId)} />
                         </Suspense>
@@ -55,8 +53,7 @@ export const FormAssign: React.FC<FormAssignProps> = ({ data, onDidDismiss }) =>
             ) : (
                 <>
                     <IonItem>
-                        <IonLabel position="stacked">Remark</IonLabel>
-                        <IonTextarea value={formData?.remark} onIonChange={(e) => handleChangeInput("remark", e.detail.value!)} />
+                        <IonTextarea value={formData?.remark} label="Remark" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("remark", e.detail.value!)} />
                     </IonItem>
                     <IonButton type="submit" expand="block" fill="clear">Submit</IonButton>
                 </>

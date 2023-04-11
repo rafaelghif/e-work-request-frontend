@@ -9,7 +9,7 @@ interface SelectWorkRequestYearProps {
 const SelectWorkRequestYear: React.FC<SelectWorkRequestYearProps> = ({ value, handleChange }) => {
     const { isLoading, data } = useQueryWorkRequestYear();
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label="Year" labelPlacement="start" onIonChange={e => handleChange(e.detail.value!)}>
             <IonSelectOption value="All">All</IonSelectOption>
             {isLoading ? (
                 null

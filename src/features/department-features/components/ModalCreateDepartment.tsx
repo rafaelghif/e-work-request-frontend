@@ -1,4 +1,4 @@
-import { IonButton, IonInput, IonItem, IonLabel } from "@ionic/react";
+import { IonButton, IonInput, IonItem } from "@ionic/react";
 import { useState } from "react";
 import Modal from "../../../components/Modal";
 import useCreateDepartment from "../hooks/useCreateDepartment";
@@ -30,12 +30,10 @@ const ModalCreateDepartment: React.FC<ModalCreateDepartmentProps> = ({ isOpen, o
         <Modal isOpen={isOpen} title="Create Department" onDidDismiss={() => onDidDismiss()}>
             <form onSubmit={handleSubmit}>
                 <IonItem>
-                    <IonLabel position="floating">Name</IonLabel>
-                    <IonInput type="text" value={formData.name} onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
+                    <IonInput type="text" value={formData.name} label="Name" labelPlacement="floating" onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="floating">Abbreviation</IonLabel>
-                    <IonInput type="text" value={formData.abbreviation} onIonChange={(e) => handleChangeInput("abbreviation", e.detail.value!)} required />
+                    <IonInput type="text" value={formData.abbreviation} label="Abbreviation" labelPlacement="floating" onIonChange={(e) => handleChangeInput("abbreviation", e.detail.value!)} required />
                 </IonItem>
                 <IonButton type="submit" expand="block" className="mt-3">Submit</IonButton>
             </form>

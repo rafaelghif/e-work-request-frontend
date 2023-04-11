@@ -5,12 +5,13 @@ import useQueryActiveDepartment from "../hooks/useQueryActiveDepartment";
 interface SelectDepartmentProps {
     value: string;
     handleChange: (departmentId: string) => void;
+    label?: string;
 }
 
-const SelectDepartment: React.FC<SelectDepartmentProps> = ({ value, handleChange }) => {
+const SelectDepartment: React.FC<SelectDepartmentProps> = ({ value, handleChange, label = "Department" }) => {
     const { isLoading, data } = useQueryActiveDepartment();
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label={label} labelPlacement="stacked" onIonChange={e => handleChange(e.detail.value!)}>
             {isLoading ? (
                 <IonSelectOption value="">Select Department</IonSelectOption>
             ) : data?.data?.map((res: DepartmentInterface) => (

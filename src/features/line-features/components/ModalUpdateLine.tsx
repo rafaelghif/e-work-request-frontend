@@ -1,4 +1,4 @@
-import { IonButton, IonInput, IonItem, IonLabel, IonSpinner } from "@ionic/react";
+import { IonButton, IonInput, IonItem, IonSpinner } from "@ionic/react";
 import { lazy, Suspense, useEffect, useState } from "react";
 import Modal from "../../../components/Modal";
 import useUpdateLine from "../hooks/useUpdateLine";
@@ -34,15 +34,12 @@ const ModalUpdateLine: React.FC<ModalCreateLineProps> = ({ data, isOpen, onDidDi
         <Modal isOpen={isOpen} title="Update Line" onDidDismiss={() => onDidDismiss()}>
             <form onSubmit={handleSubmit}>
                 <IonItem>
-                    <IonLabel position="floating">Id</IonLabel>
-                    <IonInput type="text" value={formData?.id} onIonChange={(e) => handleChangeInput("id", e.detail.value!)} required disabled />
+                    <IonInput type="text" value={formData?.id} label="Id" labelPlacement="floating" onIonChange={(e) => handleChangeInput("id", e.detail.value!)} required disabled />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="floating">Name</IonLabel>
-                    <IonInput type="text" value={formData?.name} onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
+                    <IonInput type="text" value={formData?.name} label="Name" labelPlacement="floating" onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="stacked">Department</IonLabel>
                     <Suspense fallback={<IonSpinner name="crescent" />}>
                         <SelectDepartment value={formData?.DepartmentId} handleChange={(departmentId) => handleChangeInput("DepartmentId", departmentId)} />
                     </Suspense>

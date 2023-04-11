@@ -6,12 +6,13 @@ interface SelectLineProps {
     value: string;
     departmentId: string;
     handleChange: (lineId: string) => void;
+    label?: string;
 }
 
-const SelectLine: React.FC<SelectLineProps> = ({ value, departmentId, handleChange }) => {
+const SelectLine: React.FC<SelectLineProps> = ({ value, departmentId, handleChange, label = "Line" }) => {
     const { isLoading, data } = useQueryActiveLine(departmentId);
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label={label} labelPlacement="stacked" onIonChange={e => handleChange(e.detail.value!)}>
             <IonSelectOption value="">None</IonSelectOption>
             {isLoading ? (
                 <IonSelectOption value="">Select Line</IonSelectOption>

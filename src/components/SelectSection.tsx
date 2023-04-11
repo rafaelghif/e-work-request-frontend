@@ -11,7 +11,7 @@ interface SelectSectionProps {
 const SelectSection: React.FC<SelectSectionProps> = ({ value, departmentId, handleChange }) => {
     const { isLoading, data } = useQueryActiveSection(departmentId);
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label="Section" labelPlacement="stacked" onIonChange={e => handleChange(e.detail.value!)}>
             {isLoading ? (
                 <IonSelectOption value="">Select Section</IonSelectOption>
             ) : data?.data?.map((res: DepartmentInterface) => (

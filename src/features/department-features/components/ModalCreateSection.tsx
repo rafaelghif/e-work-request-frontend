@@ -1,4 +1,4 @@
-import { IonButton, IonInput, IonItem, IonLabel } from "@ionic/react";
+import { IonButton, IonInput, IonItem } from "@ionic/react";
 import { useEffect, useState } from "react";
 import Modal from "../../../components/Modal";
 import useCreateSection from "../hooks/useCreateSection";
@@ -35,16 +35,13 @@ const ModalCreateSection: React.FC<ModalCreateSectionProps> = ({ departmentId, i
         <Modal isOpen={isOpen} title="Create Section" onDidDismiss={() => onDidDismiss()}>
             <form onSubmit={handleSubmit}>
                 <IonItem>
-                    <IonLabel position="floating">DepartmentId</IonLabel>
-                    <IonInput type="text" value={formData.departmentId} onIonChange={(e) => handleChangeInput("departmentId", e.detail.value!)} required disabled />
+                    <IonInput type="text" value={formData.departmentId} label="DepartmentId" labelPlacement="floating" onIonChange={(e) => handleChangeInput("departmentId", e.detail.value!)} required disabled />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="floating">Name</IonLabel>
-                    <IonInput type="text" value={formData.name} onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
+                    <IonInput type="text" value={formData.name} label="Name" labelPlacement="floating" onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="floating">Level</IonLabel>
-                    <IonInput type="number" value={formData.level} onIonChange={(e) => handleChangeInput("level", e.detail.value!)} required />
+                    <IonInput type="number" value={formData.level} label="Level" labelPlacement="floating" onIonChange={(e) => handleChangeInput("level", e.detail.value!)} required />
                 </IonItem>
                 <IonButton type="submit" expand="block" className="mt-3">Submit</IonButton>
             </form>

@@ -7,7 +7,7 @@ interface SelectWorkRequestTicketStatusProps {
 
 const SelectWorkRequestTicketStatus: React.FC<SelectWorkRequestTicketStatusProps> = ({ value, handleChange }) => {
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label="Ticket Status" labelPlacement="start" onIonChange={e => handleChange(e.detail.value!)}>
             <IonSelectOption value="All">All</IonSelectOption>
             <IonSelectOption value="Request">Request</IonSelectOption>
             <IonSelectOption value="Pending">Pending</IonSelectOption>

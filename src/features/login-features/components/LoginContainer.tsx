@@ -1,4 +1,4 @@
-import { IonButton, IonImg, IonInput, IonItem, IonLabel } from "@ionic/react";
+import { IonButton, IonImg, IonInput, IonItem } from "@ionic/react";
 import { useState } from "react";
 import yokogawaImage from "../../../assets/images/yokogawa.png";
 import { LoginInterface } from "../types/login-type";
@@ -28,12 +28,10 @@ const LoginContainer: React.FC = () => {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <IonItem>
-                            <IonLabel position="stacked">BadgeId</IonLabel>
-                            <IonInput type="text" value={formData.badgeId} onIonChange={(e) => handleChangeInput("badgeId", e.detail.value!)} />
+                            <IonInput type="text" value={formData.badgeId} label="BadgeId" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("badgeId", e.detail.value!)} />
                         </IonItem>
                         <IonItem>
-                            <IonLabel position="stacked">Password</IonLabel>
-                            <IonInput type="password" value={formData.password} onIonChange={(e) => handleChangeInput("password", e.detail.value!)} />
+                            <IonInput type="password" value={formData.password} label="Password" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("password", e.detail.value!)} />
                         </IonItem>
                         <IonButton type="submit" expand="block" className="mt-3">Login</IonButton>
                     </form>

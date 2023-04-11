@@ -10,7 +10,7 @@ interface SelectRegistrationNumberProps {
 const SelectRegistrationNumber: React.FC<SelectRegistrationNumberProps> = ({ value, handleChange }) => {
     const { isLoading, data } = useQueryActiveRegistrationNumber();
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label="Registration Number Type" labelPlacement="stacked" onIonChange={e => handleChange(e.detail.value!)}>
             <IonSelectOption value="">None</IonSelectOption>
             {isLoading ? (
                 <IonSelectOption value="">Select Registration Number</IonSelectOption>

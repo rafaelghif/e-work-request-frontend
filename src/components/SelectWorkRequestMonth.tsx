@@ -10,7 +10,7 @@ const SelectWorkRequestMonth: React.FC<SelectWorkRequestMonthProps> = ({ value, 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const { isLoading, data } = useQueryWorkRequestMonth();
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label="Month" labelPlacement="start" onIonChange={e => handleChange(e.detail.value!)}>
             <IonSelectOption value="All">All</IonSelectOption>
             {isLoading ? (
                 null

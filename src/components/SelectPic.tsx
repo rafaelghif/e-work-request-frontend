@@ -12,7 +12,7 @@ const SelectPic: React.FC<SelectPicProp> = ({ value, handleChange }) => {
     const user = useAppSelector((state) => state.user);
     const { isLoading, data } = useQueryPic(user.id);
     return (
-        <IonSelect value={value} onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label="PIC" labelPlacement="stacked" onIonChange={e => handleChange(e.detail.value!)}>
             {isLoading ? (
                 <IonSelectOption value="">Select Pic</IonSelectOption>
             ) : data?.data?.map((res: UserInterface) => (

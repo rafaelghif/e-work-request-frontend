@@ -1,4 +1,4 @@
-import { IonButton, IonInput, IonItem, IonLabel, IonSpinner } from "@ionic/react";
+import { IonButton, IonInput, IonItem, IonSpinner } from "@ionic/react";
 import { lazy, Suspense, useState } from "react";
 import Modal from "../../../components/Modal";
 import useCreateLine from "../hooks/useCreateLine";
@@ -32,11 +32,9 @@ const ModalCreateLine: React.FC<ModalCreateLineProps> = ({ isOpen, onDidDismiss 
         <Modal isOpen={isOpen} title="Create Line" onDidDismiss={() => onDidDismiss()}>
             <form onSubmit={handleSubmit}>
                 <IonItem>
-                    <IonLabel position="floating">Name</IonLabel>
-                    <IonInput type="text" value={formData.name} onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
+                    <IonInput type="text" value={formData.name} label="Name" labelPlacement="floating" onIonChange={(e) => handleChangeInput("name", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="stacked">Department</IonLabel>
                     <Suspense fallback={<IonSpinner name="crescent" />}>
                         <SelectDepartment value={formData.DepartmentId} handleChange={(departmentId) => handleChangeInput("DepartmentId", departmentId)} />
                     </Suspense>

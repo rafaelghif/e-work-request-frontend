@@ -1,4 +1,4 @@
-import { IonCol, IonGrid, IonItem, IonLabel, IonRefresher, IonRefresherContent, IonRow, IonSearchbar, IonSpinner, RefresherEventDetail } from "@ionic/react";
+import { IonCol, IonGrid, IonItem, IonRefresher, IonRefresherContent, IonRow, IonSearchbar, IonSpinner, RefresherEventDetail } from "@ionic/react";
 import { lazy, Suspense, useState } from "react";
 import Card from "../../../components/Card";
 import useQueryWorkRequestList from "../hooks/useQueryWorkRequestList";
@@ -29,7 +29,6 @@ const ContainerWorkRequestList: React.FC = () => {
                     <IonRow className="px-6">
                         <IonCol size="12" sizeMd="4">
                             <IonItem>
-                                <IonLabel>Ticket Status</IonLabel>
                                 <Suspense fallback={<IonSpinner name="crescent" />}>
                                     <SelectWorkRequestTicketStatus value={ticketStatusFilter} handleChange={(ticketStatus) => setTicketStatusFilter(ticketStatus)} />
                                 </Suspense>
@@ -37,7 +36,6 @@ const ContainerWorkRequestList: React.FC = () => {
                         </IonCol>
                         <IonCol size="12" sizeMd="4">
                             <IonItem>
-                                <IonLabel>Year</IonLabel>
                                 <Suspense fallback={<IonSpinner name="crescent" />}>
                                     <SelectWorkRequestYear value={yearFilter} handleChange={(year) => setYearFilter(year)} />
                                 </Suspense>
@@ -45,7 +43,6 @@ const ContainerWorkRequestList: React.FC = () => {
                         </IonCol>
                         <IonCol size="12" sizeMd="4">
                             <IonItem>
-                                <IonLabel>Month</IonLabel>
                                 <Suspense fallback={<IonSpinner name="crescent" />}>
                                     <SelectWorkRequestMonth value={monthFilter} handleChange={(month) => setMonthFilter(month)} />
                                 </Suspense>
