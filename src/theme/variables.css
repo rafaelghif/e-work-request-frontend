@@ -121,3 +121,11 @@ ion-split-pane {
   width: 350px !important;
   max-width: 450px !important;
 }
+
+input[type="date"] {
+  margin-top: 10px !important;
+}
+
+.select-text {
+  margin-top: 10px !important;
+}
