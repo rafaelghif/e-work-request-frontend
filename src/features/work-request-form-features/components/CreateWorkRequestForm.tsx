@@ -12,7 +12,7 @@ const SelectRegistrationNumber = lazy(() => import("../../../components/SelectRe
 const CreateWorkRequestForm: React.FC = () => {
     const department = useAppSelector((state) => state.department);
     const line = useAppSelector((state) => state.line);
-    const [formData, setFormData] = useState<CreateWorkRequestFormInterface>({ title: "", description: "", jigToolNo: "", qty: 0, expectDueDate: "", RequesterLineId: "", RequesterDepartmentId: "", AssigneeDepartmentIds: [], RegistrationNumberId: "" });
+    const [formData, setFormData] = useState<CreateWorkRequestFormInterface>({ title: "", description: "", jigToolNo: "-", qty: 0, expectDueDate: "", RequesterLineId: "", RequesterDepartmentId: "", AssigneeDepartmentIds: [], RegistrationNumberId: "" });
     const { mutate } = useCreateWorkRequest();
 
     const handleChangeInput = (key: keyof CreateWorkRequestFormInterface, value: string | number | string[]) => {
@@ -26,7 +26,7 @@ const CreateWorkRequestForm: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         mutate(formData);
-        setFormData(old => ({ ...old, title: "", description: "", jigToolNo: "", qty: 0, expectDueDate: "", AssigneeDepartmentIds: [], RegistrationNumberId: "" }));
+        setFormData(old => ({ ...old, title: "", description: "", jigToolNo: "-", qty: 0, expectDueDate: "", AssigneeDepartmentIds: [], RegistrationNumberId: "" }));
     }
 
     useEffect(() => {
