@@ -12,6 +12,7 @@
     "@ionic/pwa-elements": "^3.1.1",
     "@ionic/react": "^7.0.1",
     "@ionic/react-router": "^7.0.1",
+    "@ionic/react-test-utils": "^0.4.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^13.3.0",
@@ -59,8 +60,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -85,6 +91,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^4.7.3",
+    "jest": "^27.5.1",
     "react-scripts": "^5.0.0",
     "tailwindcss": "^3.2.7"
   },
