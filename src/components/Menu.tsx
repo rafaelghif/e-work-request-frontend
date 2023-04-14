@@ -12,6 +12,7 @@ import MenuItemDropDown from "./MenuItemDropDown";
 
 const MenuItemWorkRequest = lazy(() => import("./MenuItemWorkRequest"));
 const MenuItemWorkRequestReceive = lazy(() => import("./MenuItemWorkRequestReceive"));
+const MenuItemTicketRequest = lazy(() => import("./MenuItemTicketRequest"));
 
 const Menu: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -58,12 +59,16 @@ const Menu: React.FC = () => {
                     <MenuItemDropDown headerText="Work Request" headerIcon={fileTrayFullOutline} >
                         <MenuItem url="/work-request-form" text="Work Request Form" icon={radioButtonOffOutline} />
                         <Suspense fallback={<IonSpinner name="crescent" />}>
+                            <MenuItemTicketRequest user={user} url="/ticket-request" text="Ticket Request" icon={radioButtonOffOutline} />
+                        </Suspense>
+                        <Suspense fallback={<IonSpinner name="crescent" />}>
                             <MenuItemWorkRequest user={user} url="/work-request" text="Work Request" icon={radioButtonOffOutline} />
                         </Suspense>
                         <Suspense fallback={<IonSpinner name="crescent" />}>
                             <MenuItemWorkRequestReceive user={user} url="/work-request-receive" text="Work Request Receive" icon={radioButtonOffOutline} />
                         </Suspense>
                         <MenuItem url="/work-request-list" text="Work Request List" icon={radioButtonOffOutline} />
+                        <MenuItem url="/work-request-list-old" text="Work Request List Old" icon={radioButtonOffOutline} />
                     </MenuItemDropDown>
                     <MenuItem url="/login" text="Logout" icon={logOutOutline} handleClick={() => handleClickBtnLogout()} />
                 </div>

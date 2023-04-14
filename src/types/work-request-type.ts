@@ -35,6 +35,8 @@ interface TicketAssignee {
     createdAt: string;
     updatedAt: string;
     TicketId: string;
+    Approver: User;
+    ApproverDepartment: Department;
     Assignee: User;
     PersonInCharge: User;
     AssigneeDepartment: Department;

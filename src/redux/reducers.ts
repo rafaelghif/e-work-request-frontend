@@ -7,6 +7,7 @@ import sectionSlice from "./slice/sectionSlice";
 import userSlice from "./slice/userSlice";
 import workRequestCountSlice from "./slice/workRequestCountSlice";
 import workRequestReceiveCountSlice from "./slice/workRequestReceiveCountSlice";
+import ticketRequestCountSlice from "./slice/ticketRequestCountSlice";
 
 const reducers = combineReducers({
     user: userSlice,
@@ -16,7 +17,8 @@ const reducers = combineReducers({
     auth: authSlice,
     loading: loadingSlice,
     workRequestCount: workRequestCountSlice,
-    workRequestReceiveCount: workRequestReceiveCountSlice
+    workRequestReceiveCount: workRequestReceiveCountSlice,
+    ticketRequestCountSlice: ticketRequestCountSlice
 });
 
 export default reducers;

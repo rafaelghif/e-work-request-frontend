@@ -1,3 +1,4 @@
+import { HeadActionTicketInterface } from "../features/ticket-request-features/types/ticket-request-type";
 import { AssignTicketInterface, PicActionTicketInterface } from "../features/work-request-features/types/work-request-type";
 import { CreateWorkRequestFormInterface } from "../features/work-request-form-features/types/work-request-form-type";
 import { axiosGet, axiosPatch, axiosPost } from "./api-service";
@@ -29,6 +30,25 @@ export const getWorkRequestReceiveCountService = async (): Promise<any> => {
     }
 }
 
+export const getWorkTicketRequestCountService = async (): Promise<any> => {
+    try {
+        const response = await axiosGet("/work-request/ticket-request/count");
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+export const getTicketRequestService = async (search: string): Promise<any> => {
+    try {
+        const response = await axiosGet(`/work-request/ticket-request?search=${search}`);
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+
 export const getWorkRequestReceiveService = async (search: string): Promise<any> => {
     try {
         const response = await axiosGet(`/work-request/receive?search=${search}`);
@@ -41,6 +61,15 @@ export const getWorkRequestReceiveService = async (search: string): Promise<any>
 export const createWorkRequestService = async (payload: CreateWorkRequestFormInterface): Promise<any> => {
     try {
         const response = await axiosPost("/work-request/create", payload);
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+export const headActionTicketService = async (payload: HeadActionTicketInterface): Promise<any> => {
+    try {
+        const response = await axiosPatch("/work-request/head-action", payload);
         return Promise.resolve(response);
     } catch (err: any) {
         return Promise.reject(err);
