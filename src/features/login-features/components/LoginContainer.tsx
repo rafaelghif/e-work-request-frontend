@@ -23,7 +23,7 @@ const LoginContainer: React.FC = () => {
             <div className="bg-white h-[21em] w-11/12 md:w-1/2 rounded-lg shadow-lg p-5">
                 <div className="flex flex-col items-center justify-center gap-3 my-5">
                     <IonImg src={yokogawaImage} className="h-auto w-[240px]" />
-                    <span className="block font-['Lato'] font-bold text-xl">E-Work Request</span>
+                    <span className="block font-['Lato'] font-bold text-xl">E-Work Order</span>
                 </div>
                 <div>
                     <form onSubmit={handleSubmit}>

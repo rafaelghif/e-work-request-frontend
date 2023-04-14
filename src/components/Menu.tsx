@@ -33,7 +33,7 @@ const Menu: React.FC = () => {
         <IonMenu contentId="main" menuId="main" disabled={!isAuth} className="border-r-2">
             <IonHeader>
                 <IonToolbar color={"light"}>
-                    <IonTitle>E-Work Request</IonTitle>
+                    <IonTitle>E-Work Order</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="bg-slate-600">
