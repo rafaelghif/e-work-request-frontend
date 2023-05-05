@@ -10,7 +10,7 @@ interface FormAsFormPicProps {
 }
 
 export const FormPic: React.FC<FormAsFormPicProps> = ({ data, onDidDismiss }) => {
-    const [formData, setFormData] = useState<PicActionTicketInterface>({ id: data.id, ticketAssigneeId: data.TicketAssignees[0].id, ticketStatus: "Progress", timeTaken: "", remark: "" });
+    const [formData, setFormData] = useState<PicActionTicketInterface>({ id: data.id, ticketAssigneeId: data.TicketAssignees[0].id, ticketStatus: "Progress", timeTaken: "", actionTaken: "", remark: "" });
     const [timeTaken, setTimeTaken] = useState<number>(0);
     const [timeTakenSuffix, setTimeTakenSuffix] = useState<string>("Minutes");
     const { mutate } = usePicActionTicket();
@@ -24,7 +24,7 @@ export const FormPic: React.FC<FormAsFormPicProps> = ({ data, onDidDismiss }) =>
         if (key === "ticketStatus" && value === "Complete") {
             setTimeTaken(0);
             setTimeTakenSuffix("Minutes");
-            setFormData(old => ({ ...old, [key]: value, timeTaken: "", remark: "" }));
+            setFormData(old => ({ ...old, [key]: value, timeTaken: "", actionTaken: "", remark: "" }));
         } else {
             setFormData(old => ({ ...old, [key]: value }));
         }
@@ -46,25 +46,30 @@ export const FormPic: React.FC<FormAsFormPicProps> = ({ data, onDidDismiss }) =>
             {formData.ticketStatus === "Progress" || formData.ticketStatus === "Pending" ? (
                 <>
                     <IonItem>
-                        <IonTextarea value={formData.remark} label="Remark" labelPlacement="floating" onIonChange={(e) => handleChangeInput("remark", e.detail.value!)} />
+                        <IonTextarea value={formData.remark} label="Remark" labelPlacement="floating" onIonChange={(e) => handleChangeInput("remark", e.detail.value!)} required />
                     </IonItem>
                 </>
             ) : (
-                <div className="flex w-full">
-                    <div className="w-9/12">
-                        <IonItem>
-                            <IonInput type="number" min={1} value={timeTaken} label="Time Taken" labelPlacement="floating" onIonChange={(e) => handleChangeTimeTaken(parseInt(e.detail.value?.toString()!))} />
-                        </IonItem>
+                <div>
+                    <div className="flex w-full">
+                        <div className="w-9/12">
+                            <IonItem>
+                                <IonInput type="number" min={1} value={timeTaken} label="Time Taken" labelPlacement="floating" onIonChange={(e) => handleChangeTimeTaken(parseInt(e.detail.value?.toString()!))} required />
+                            </IonItem>
+                        </div>
+                        <div className="w-3/12">
+                            <IonItem>
+                                <IonSelect value={timeTakenSuffix} label="Suffix" labelPlacement="stacked" onIonChange={(e) => setTimeTakenSuffix(e.detail.value!)}>
+                                    <IonSelectOption value="Minutes">Minutes</IonSelectOption>
+                                    <IonSelectOption value="Hours">Hours</IonSelectOption>
+                                    <IonSelectOption value="Days">Days</IonSelectOption>
+                                </IonSelect>
+                            </IonItem>
+                        </div>
                     </div>
-                    <div className="w-3/12">
-                        <IonItem>
-                            <IonSelect value={timeTakenSuffix} label="Suffix" labelPlacement="stacked" onIonChange={(e) => setTimeTakenSuffix(e.detail.value!)}>
-                                <IonSelectOption value="Minutes">Minutes</IonSelectOption>
-                                <IonSelectOption value="Hours">Hours</IonSelectOption>
-                                <IonSelectOption value="Days">Days</IonSelectOption>
-                            </IonSelect>
-                        </IonItem>
-                    </div>
+                    <IonItem>
+                        <IonTextarea label="Action Taken" labelPlacement="stacked" value={formData.actionTaken} onIonChange={(e) => handleChangeInput("actionTaken", e.detail.value!)} required />
+                    </IonItem>
                 </div>
             )}
             <IonButton type="submit" expand="block" fill="clear">Submit</IonButton>

@@ -21,11 +21,6 @@ const TableWorkRequestList: React.FC<TableWorkRequestListProps> = ({ data }) => 
         sortable: true,
         wrap: true
     }, {
-        name: "Title",
-        selector: row => row.title,
-        sortable: true,
-        wrap: true
-    }, {
         name: "Description",
         selector: row => row.description,
         sortable: true,

@@ -1,5 +1,4 @@
 export interface CreateWorkRequestFormInterface {
-    title: string;
     description: string;
     jigToolNo: string;
     qty: number;
@@ -8,4 +7,5 @@ export interface CreateWorkRequestFormInterface {
     RequesterLineId: string;
     AssigneeDepartmentIds: string[];
     RegistrationNumberId: string;
+    attachmentFile: File | undefined;
 }

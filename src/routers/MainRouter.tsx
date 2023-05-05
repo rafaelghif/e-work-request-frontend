@@ -21,7 +21,7 @@ const WorkRequest = lazy(() => import("../pages/WorkRequest"));
 const RegistrationNumber = lazy(() => import("../pages/RegistrationNumber"));
 const WorkRequestReceive = lazy(() => import("../pages/WorkRequestReceive"));
 const WorkRequestList = lazy(() => import("../pages/WorkRequestList"));
-
+const WorkRequestListOld = lazy(()=> import("../pages/WorkRequestListOld"));
 
 const MainRouter: React.FC = () => {
     const isAuth = useAppSelector((state) => state.auth);
@@ -41,6 +41,7 @@ const MainRouter: React.FC = () => {
                         <Route exact path="/work-request" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequest} />} />
                         <Route exact path="/work-request-receive" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestReceive} />} />
                         <Route exact path="/work-request-list" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestList} />} />
+                        <Route exact path="/work-request-list-old" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestListOld} />} />
                     </Suspense>
                     <Route exact path="/">
                         <Redirect to={isAuth ? "/dashboard" : "/login"} />

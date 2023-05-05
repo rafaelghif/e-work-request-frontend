@@ -1,9 +1,10 @@
-import { IonItem, IonInput, IonTextarea, IonSpinner, IonButton } from "@ionic/react";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { IonItem, IonInput, IonTextarea, IonSpinner, IonButton, IonLabel, IonIcon } from "@ionic/react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import SelectMultipleDepartment from "../../../components/SelectMultipleDepartment";
 import { useAppSelector } from "../../../redux/hook";
 import useCreateWorkRequest from "../hooks/useCreateWorkRequest";
 import { CreateWorkRequestFormInterface } from "../types/work-request-form-type";
+import { closeOutline } from "ionicons/icons";
 
 const SelectDepartment = lazy(() => import("../../../components/SelectDepartment"));
 const SelectLine = lazy(() => import("../../../components/SelectLine"));
@@ -11,8 +12,9 @@ const SelectRegistrationNumber = lazy(() => import("../../../components/SelectRe
 
 const CreateWorkRequestForm: React.FC = () => {
     const department = useAppSelector((state) => state.department);
+    const inputFileRef = useRef<HTMLInputElement>(null);
     const line = useAppSelector((state) => state.line);
-    const [formData, setFormData] = useState<CreateWorkRequestFormInterface>({ title: "", description: "", jigToolNo: "-", qty: 0, expectDueDate: "", RequesterLineId: "", RequesterDepartmentId: "", AssigneeDepartmentIds: [], RegistrationNumberId: "" });
+    const [formData, setFormData] = useState<CreateWorkRequestFormInterface>({ description: "", jigToolNo: "-", qty: 0, expectDueDate: "", RequesterLineId: "", RequesterDepartmentId: "", AssigneeDepartmentIds: [], RegistrationNumberId: "", attachmentFile: undefined });
     const { mutate } = useCreateWorkRequest();
 
     const handleChangeInput = (key: keyof CreateWorkRequestFormInterface, value: string | number | string[]) => {
@@ -23,10 +25,24 @@ const CreateWorkRequestForm: React.FC = () => {
         setFormData(old => ({ ...old, [key]: value, RequesterLineId: "" }));
     }
 
+    const handleRemoveAttachment = () => {
+        if (inputFileRef.current?.value) {
+            inputFileRef.current.value = "";
+            setFormData((old) => ({ ...old, attachmentFile: undefined }));
+        }
+    }
+
+    const handleChangeAttachment = (file: File | undefined) => {
+        setFormData(old => ({ ...old, attachmentFile: file }));
+    }
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         mutate(formData);
-        setFormData(old => ({ ...old, title: "", description: "", jigToolNo: "-", qty: 0, expectDueDate: "", AssigneeDepartmentIds: [], RegistrationNumberId: "" }));
+        if (inputFileRef.current?.files) {
+            inputFileRef.current.value = "";
+        }
+        setFormData(old => ({ ...old, description: "", jigToolNo: "-", qty: 0, expectDueDate: "", AssigneeDepartmentIds: [], RegistrationNumberId: "", attachmentFile: undefined }));
     }
 
     useEffect(() => {
@@ -39,9 +55,6 @@ const CreateWorkRequestForm: React.FC = () => {
                 <Suspense fallback={<IonSpinner name="crescent" />}>
                     <SelectRegistrationNumber value={formData.RegistrationNumberId} handleChange={(registrationNumberId) => handleChangeInput("RegistrationNumberId", registrationNumberId)} />
                 </Suspense>
-            </IonItem>
-            <IonItem>
-                <IonInput type="text" value={formData.title} label="Title" labelPlacement="floating" onIonChange={(e) => handleChangeInput("title", e.detail.value!)} />
             </IonItem>
             <IonItem>
                 <IonTextarea value={formData.description} label="Description" labelPlacement="floating" onIonChange={(e) => handleChangeInput("description", e.detail.value!)} />
@@ -57,7 +70,7 @@ const CreateWorkRequestForm: React.FC = () => {
             </IonItem>
             <IonItem>
                 <Suspense fallback={<IonSpinner name="crescent" />}>
-                    <SelectDepartment value={formData.RequesterDepartmentId} label="Requester Department" handleChange={(departmentId) => handleChangeInputRequestDepartment("RequesterDepartmentId", departmentId)} />
+                    <SelectDepartment value={formData.RequesterDepartmentId} label="Requester Department" handleChange={(departmentId) => handleChangeInputRequestDepartment("RequesterDepartmentId", departmentId)} isDisabled={true} />
                 </Suspense>
             </IonItem>
             <IonItem>
@@ -69,6 +82,15 @@ const CreateWorkRequestForm: React.FC = () => {
                 <Suspense fallback={<IonSpinner name="crescent" />}>
                     <SelectMultipleDepartment value={formData.AssigneeDepartmentIds} label="Assignee Department" handleChange={(department) => handleChangeInput("AssigneeDepartmentIds", department)} />
                 </Suspense>
+            </IonItem>
+            <IonItem>
+                <IonLabel position="stacked">
+                    Attachment File
+                    {formData?.attachmentFile ? (
+                        <IonButton fill="clear" color="danger" className="ml-2 -mt-2" onClick={() => handleRemoveAttachment()}>Remove Attachment<IonIcon icon={closeOutline} /></IonButton>
+                    ) : null}
+                </IonLabel>
+                <input ref={inputFileRef} type="file" className="mt-5" onChange={(e) => handleChangeAttachment(e.target.files?.[0])} accept=".png,.jpg,.jpeg,.pdf,.zip,.xlsx,.xls,.txt,.csv,.docx" />
             </IonItem>
             <IonButton type="submit" expand="block" fill="clear" className="mt-3">Submit</IonButton>
         </form>

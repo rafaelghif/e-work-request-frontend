@@ -60,7 +60,7 @@ export const getWorkRequestReceiveService = async (search: string): Promise<any>
 
 export const createWorkRequestService = async (payload: CreateWorkRequestFormInterface): Promise<any> => {
     try {
-        const response = await axiosPost("/work-request/create", payload);
+        const response = await axiosPost("/work-request/create", payload, true);
         return Promise.resolve(response);
     } catch (err: any) {
         return Promise.reject(err);

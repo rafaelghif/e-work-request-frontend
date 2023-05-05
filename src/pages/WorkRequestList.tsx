@@ -15,7 +15,6 @@ const WorkRequestList: React.FC = () => {
                 <Suspense fallback={<IonSpinner name="crescent" />}>
                     <ContainerWorkRequestList />
                 </Suspense>
-
             </IonContent>
         </IonPage>
     );

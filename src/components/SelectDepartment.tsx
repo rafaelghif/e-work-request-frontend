@@ -6,12 +6,13 @@ interface SelectDepartmentProps {
     value: string;
     handleChange: (departmentId: string) => void;
     label?: string;
+    isDisabled?: boolean;
 }
 
-const SelectDepartment: React.FC<SelectDepartmentProps> = ({ value, handleChange, label = "Department" }) => {
+const SelectDepartment: React.FC<SelectDepartmentProps> = ({ value, handleChange, label = "Department", isDisabled = false }) => {
     const { isLoading, data } = useQueryActiveDepartment();
     return (
-        <IonSelect value={value} label={label} labelPlacement="stacked" onIonChange={e => handleChange(e.detail.value!)}>
+        <IonSelect value={value} label={label} labelPlacement="stacked" onIonChange={e => handleChange(e.detail.value!)} disabled={isDisabled}>
             {isLoading ? (
                 <IonSelectOption value="">Select Department</IonSelectOption>
             ) : data?.data?.map((res: DepartmentInterface) => (

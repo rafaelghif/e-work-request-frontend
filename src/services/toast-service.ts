@@ -75,7 +75,6 @@ export const warningToast = async (message: string, duration: number | undefined
 export const errorToast = async (messageData: any, titleData: string = "", duration: number = 2500): Promise<void> => {
     let toastTitle = titleData;
     let toastText = messageData;
-
     try {
         if (typeof messageData === "undefined") {
             toastTitle = "Something Wrong!";
@@ -89,9 +88,15 @@ export const errorToast = async (messageData: any, titleData: string = "", durat
                     toastTitle = title;
                     toastText = validationError.map((data: any) => data.msg).join("<br />");
                 } else {
-                    const { title, message } = data;
-                    toastTitle = title;
-                    toastText = message;
+                    if (data) {
+                        const { title, message } = data;
+                        toastTitle = title;
+                        toastText = message;
+                    } else {
+                        toastTitle = "Error!";
+                        toastText = messageData.response.data.toString();
+                        duration = 10000
+                    }
                 }
             } else {
                 if ("message" in messageData) {

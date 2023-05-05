@@ -29,6 +29,7 @@ interface TicketAssignee {
     status: "Open" | "Pending" | "Progress" | "Complete" | "Reject";
     assigneeDate: string;
     timeTaken: string;
+    actionTaken: string;
     inActive: boolean;
     createdBy: string;
     updatedBy: string;
@@ -46,7 +47,6 @@ export interface WorkRequestInterface {
     id: string;
     ticketNumber: string;
     workNumber: string;
-    title: string;
     description: string;
     jigToolNo: string;
     qty: number;

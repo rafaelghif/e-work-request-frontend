@@ -43,10 +43,11 @@ const ContainerWorkRequestListDetail: React.FC<ExpanderComponentProps<WorkReques
                         <IonRow>
                             {workRequest.TicketAssignees?.map(res => (
                                 <SectionWorkRequestDetail key={`assignee-${res.id}`} title={`${res.AssigneeDepartment?.name}`} size="12" sizeMd={workRequest.TicketAssignees?.length > 1 ? "6" : "12"}>
-                                    <ItemWorkRequestDetail title="Assignee BadgeId" content={res.Assignee?.badgeId ? res.Assignee.badgeId : "N/A"} />
-                                    <ItemWorkRequestDetail title="Assignee Name" content={res.Assignee?.name ? res.Assignee.name : "N/A"} />
-                                    <ItemWorkRequestDetail title="Person In Charge BadgeId" content={res.PersonInCharge?.badgeId ? res.PersonInCharge.badgeId : "N/A"} />
-                                    <ItemWorkRequestDetail title="Person In Charge Name" content={res.PersonInCharge?.name ? res.PersonInCharge.name : "N/A"} />
+                                    <ItemWorkRequestDetail title="Assignor BadgeId" content={res.Assignee?.badgeId ? res.Assignee.badgeId : "N/A"} />
+                                    <ItemWorkRequestDetail title="Assignor Name" content={res.Assignee?.name ? res.Assignee.name : "N/A"} />
+                                    <ItemWorkRequestDetail title="Assignee BadgeId" content={res.PersonInCharge?.badgeId ? res.PersonInCharge.badgeId : "N/A"} />
+                                    <ItemWorkRequestDetail title="Assignee Name" content={res.PersonInCharge?.name ? res.PersonInCharge.name : "N/A"} />
+                                    <ItemWorkRequestDetail title="Action Taken" content={res.actionTaken ? res.actionTaken : "N/A"} />
                                     <ItemWorkRequestDetail title="Time Taken" content={res.timeTaken ? res.timeTaken : "N/A"} />
                                     <ItemWorkRequestDetail title="Status" content={res.status ? res.status : "N/A"} />
                                 </SectionWorkRequestDetail>
