@@ -1,5 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonSpinner, IonTitle, IonToolbar } from "@ionic/react";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
+
+const ContainerWorkRequestOldList = lazy(() => import("../features/work-request-old-features/components/ContainerWorkRequestOldList"));
 
 const WorkRequestListOld: React.FC = () => {
     return (
@@ -11,7 +13,7 @@ const WorkRequestListOld: React.FC = () => {
             </IonHeader>
             <IonContent className="ion-padding">
                 <Suspense fallback={<IonSpinner name="crescent" />}>
-
+                    <ContainerWorkRequestOldList />
                 </Suspense>
             </IonContent>
         </IonPage>

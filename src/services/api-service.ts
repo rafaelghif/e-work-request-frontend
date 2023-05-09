@@ -26,9 +26,17 @@ export const axiosPost = async (url: string, payload: any, multipart: boolean = 
     }
 }
 
-export const axiosPatch = async (url: string, payload: any) => {
+export const axiosPatch = async (url: string, payload: any, multipart: boolean = false) => {
     try {
-        const response = await axiosClient.patch(url, payload);
+        var postOptions = {}
+        if (multipart) {
+            postOptions = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+        }
+        const response = await axiosClient.patch(url, payload, postOptions);
         return Promise.resolve(response.data);
     } catch (err) {
         return Promise.reject(err);

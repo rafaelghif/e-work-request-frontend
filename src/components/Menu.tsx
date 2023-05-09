@@ -58,6 +58,7 @@ const Menu: React.FC = () => {
                     </MenuItemDropDown>
                     <MenuItemDropDown headerText="Work Request" headerIcon={fileTrayFullOutline} >
                         <MenuItem url="/work-request-form" text="Work Request Form" icon={radioButtonOffOutline} />
+                        <MenuItem url="/work-request-form-edit" text="Work Request Form Edit" icon={radioButtonOffOutline} />
                         <Suspense fallback={<IonSpinner name="crescent" />}>
                             <MenuItemTicketRequest user={user} url="/ticket-request" text="Ticket Request" icon={radioButtonOffOutline} />
                         </Suspense>

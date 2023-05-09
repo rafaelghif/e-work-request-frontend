@@ -56,9 +56,10 @@ export interface WorkRequestInterface {
     RequesterDepartmentId: string;
     RequesterLineId: string;
     ReceiverDepartmentId: string;
-    ticketStatus: "Request" | "Progress" | "Send to the Requestor" | "Complete" | "Reject";
+    ticketStatus: "Waiting Approve" | "Request" | "Progress" | "Send to the Requestor" | "Complete" | "Reject";
     sendToRequestorDate: string;
     completeDate: string;
+    attachmentFile: string;
     inActive: boolean;
     createdBy: string;
     updatedBy: string;
@@ -72,4 +73,14 @@ export interface WorkRequestInterface {
     ReceiverDepartment: Department;
     TicketAssignees: TicketAssignee[];
     RequesterLine?: Line;
+}
+
+export interface TicketInterface {
+    id: string;
+    ticketNumber: string;
+    description: string;
+    jigToolNo: string;
+    qty: number;
+    expectDueDate: string;
+    attachmentFile: string;
 }

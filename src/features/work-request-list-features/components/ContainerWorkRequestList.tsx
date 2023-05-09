@@ -7,13 +7,17 @@ import TableWorkRequestList from "./TableWorkRequestList";
 const SelectWorkRequestMonth = lazy(() => import("../../../components/SelectWorkRequestMonth"));
 const SelectWorkRequestTicketStatus = lazy(() => import("../../../components/SelectWorkRequestTicketStatus"));
 const SelectWorkRequestYear = lazy(() => import("../../../components/SelectWorkRequestYear"));
+const SelectWorkRequestType = lazy(() => import("../../../components/SelectWorkRequestType"));
+const SelectWorkRequestDepartment = lazy(() => import("../../../components/SelectWorkRequestDepartment"));
 
 const ContainerWorkRequestList: React.FC = () => {
     const [search, setSearch] = useState<string>("");
     const [ticketStatusFilter, setTicketStatusFilter] = useState<string>("All");
     const [yearFilter, setYearFilter] = useState<string>(new Date().getFullYear().toString());
     const [monthFilter, setMonthFilter] = useState<string>((new Date().getMonth() + 1).toString());
-    const { isLoading, data, isError, refetch } = useQueryWorkRequestList(search, ticketStatusFilter, yearFilter, monthFilter);
+    const [typeFilter, setTypeFilter] = useState<string>("All");
+    const [departmentFilter, setDepartmentFilter] = useState<string>("All");
+    const { isLoading, data, isError, refetch } = useQueryWorkRequestList(search, ticketStatusFilter, typeFilter, departmentFilter, yearFilter, monthFilter);
 
     const handleRefresh = async (event: CustomEvent<RefresherEventDetail>) => {
         refetch();
@@ -27,24 +31,38 @@ const ContainerWorkRequestList: React.FC = () => {
             <Card title="Data Work Request List">
                 <IonGrid>
                     <IonRow className="px-6">
-                        <IonCol size="12" sizeMd="4">
+                        <IonCol size="12" sizeMd="3">
                             <IonItem>
                                 <Suspense fallback={<IonSpinner name="crescent" />}>
                                     <SelectWorkRequestTicketStatus value={ticketStatusFilter} handleChange={(ticketStatus) => setTicketStatusFilter(ticketStatus)} />
                                 </Suspense>
                             </IonItem>
                         </IonCol>
-                        <IonCol size="12" sizeMd="4">
+                        <IonCol size="12" sizeMd="2">
                             <IonItem>
                                 <Suspense fallback={<IonSpinner name="crescent" />}>
-                                    <SelectWorkRequestYear value={yearFilter} handleChange={(year) => setYearFilter(year)} />
+                                    <SelectWorkRequestType value={typeFilter} handleChange={(month) => setTypeFilter(month)} />
                                 </Suspense>
                             </IonItem>
                         </IonCol>
-                        <IonCol size="12" sizeMd="4">
+                        <IonCol size="12" sizeMd="3">
+                            <IonItem>
+                                <Suspense fallback={<IonSpinner name="crescent" />}>
+                                    <SelectWorkRequestDepartment value={departmentFilter} handleChange={(month) => setDepartmentFilter(month)} />
+                                </Suspense>
+                            </IonItem>
+                        </IonCol>
+                        <IonCol size="12" sizeMd="2">
                             <IonItem>
                                 <Suspense fallback={<IonSpinner name="crescent" />}>
                                     <SelectWorkRequestMonth value={monthFilter} handleChange={(month) => setMonthFilter(month)} />
+                                </Suspense>
+                            </IonItem>
+                        </IonCol>
+                        <IonCol size="12" sizeMd="2">
+                            <IonItem>
+                                <Suspense fallback={<IonSpinner name="crescent" />}>
+                                    <SelectWorkRequestYear value={yearFilter} handleChange={(year) => setYearFilter(year)} />
                                 </Suspense>
                             </IonItem>
                         </IonCol>

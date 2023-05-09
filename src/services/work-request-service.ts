@@ -1,11 +1,21 @@
 import { HeadActionTicketInterface } from "../features/ticket-request-features/types/ticket-request-type";
 import { AssignTicketInterface, PicActionTicketInterface } from "../features/work-request-features/types/work-request-type";
+import { EditWorkRequestInterface } from "../features/work-request-form-edit-features/types/work-request-form-edit-type";
 import { CreateWorkRequestFormInterface } from "../features/work-request-form-features/types/work-request-form-type";
 import { axiosGet, axiosPatch, axiosPost } from "./api-service";
 
 export const getWorkRequestCountService = async (): Promise<any> => {
     try {
         const response = await axiosGet("/work-request/count");
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+export const getTicketNumberService = async (search: string): Promise<any> => {
+    try {
+        const response = await axiosGet(`/work-request/ticket-number?search=${search}`);
         return Promise.resolve(response);
     } catch (err: any) {
         return Promise.reject(err);
@@ -121,9 +131,27 @@ export const getWorkRequestMonth = async (): Promise<any> => {
     }
 }
 
-export const getWorkRequestList = async (payload: { search: string, ticketStatus: string; year: string; month: string }) => {
+export const getWorkRequestType = async (): Promise<any> => {
     try {
-        const response = await axiosGet(`/work-request/all/ticketStatus/${payload.ticketStatus}/year/${payload.year}/month/${payload.month}?search=${payload.search}`);
+        const response = await axiosGet(`/work-request/type`);
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+export const getWorkRequestDepartment = async (): Promise<any> => {
+    try {
+        const response = await axiosGet(`/work-request/department`);
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+export const getWorkRequestList = async (payload: { search: string, ticketStatus: string, type: string, department: string, year: string, month: string }) => {
+    try {
+        const response = await axiosGet(`/work-request/all/ticketStatus/${payload.ticketStatus}/type/${payload.type}/department/${payload.department}/year/${payload.year}/month/${payload.month}?search=${payload.search}`);
         return Promise.resolve(response);
     } catch (err: any) {
         return Promise.reject(err);
@@ -133,6 +161,15 @@ export const getWorkRequestList = async (payload: { search: string, ticketStatus
 export const getWorkRequestComments = async (payload: string) => {
     try {
         const response = await axiosGet(`/work-request/comment/ticketId/${payload}`);
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+export const updateWorkRequestService = async (payload: EditWorkRequestInterface) => {
+    try {
+        const response = await axiosPatch("/work-request/update", payload, true);
         return Promise.resolve(response);
     } catch (err: any) {
         return Promise.reject(err);

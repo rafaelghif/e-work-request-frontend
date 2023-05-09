@@ -16,12 +16,13 @@ const Department = lazy(() => import("../pages/Department"));
 const Line = lazy(() => import("../pages/Line"));
 const User = lazy(() => import("../pages/User"));
 const WorkRequestForm = lazy(() => import("../pages/WorkRequestForm"));
-const TicketRequest= lazy(()=> import("../pages/TicketRequest"));
+const TicketRequest = lazy(() => import("../pages/TicketRequest"));
 const WorkRequest = lazy(() => import("../pages/WorkRequest"));
 const RegistrationNumber = lazy(() => import("../pages/RegistrationNumber"));
 const WorkRequestReceive = lazy(() => import("../pages/WorkRequestReceive"));
 const WorkRequestList = lazy(() => import("../pages/WorkRequestList"));
-const WorkRequestListOld = lazy(()=> import("../pages/WorkRequestListOld"));
+const WorkRequestListOld = lazy(() => import("../pages/WorkRequestListOld"));
+const WorkRequestFormEdit = lazy(() => import("../pages/WorkRequestFormEdit"));
 
 const MainRouter: React.FC = () => {
     const isAuth = useAppSelector((state) => state.auth);
@@ -37,6 +38,7 @@ const MainRouter: React.FC = () => {
                         <Route exact path="/user" component={() => <PrivateRoute isAuth={isAuth} component={User} strictRole={["SUPER USER"]} />} />
                         <Route exact path="/registration-number" component={() => <PrivateRoute isAuth={isAuth} component={RegistrationNumber} strictRole={["SUPER USER"]} />} />
                         <Route exact path="/work-request-form" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestForm} />} />
+                        <Route exact path="/work-request-form-edit" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestFormEdit} />} />
                         <Route exact path="/ticket-request" component={() => <PrivateRoute isAuth={isAuth} component={TicketRequest} />} />
                         <Route exact path="/work-request" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequest} />} />
                         <Route exact path="/work-request-receive" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestReceive} />} />

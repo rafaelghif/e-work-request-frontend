@@ -4,6 +4,7 @@ import Table from "../../../components/Table";
 import { IonText } from "@ionic/react";
 import ContainerWorkRequestListDetail from "./ContainerWorkRequestListDetail";
 import { WorkRequestInterface } from "../../../types/work-request-type";
+import LinkAttachment from "../../../components/LinkAttachment";
 
 interface TableWorkRequestListProps {
     data: WorkRequestInterface[];
@@ -32,8 +33,13 @@ const TableWorkRequestList: React.FC<TableWorkRequestListProps> = ({ data }) => 
         sortable: true,
         wrap: true
     }, {
+        name: "Attachment File",
+        cell: row => <LinkAttachment attachmentFile={row.attachmentFile} />,
+        sortable: true,
+        wrap: true
+    }, {
         name: "Ticket Status",
-        cell: row => <IonText color={row.ticketStatus === "Request" || row.ticketStatus === "Reject"
+        cell: row => <IonText color={row.ticketStatus === "Request" || row.ticketStatus === "Reject" || row.ticketStatus === "Waiting Approve"
             ? "danger" : row.ticketStatus === "Send to the Requestor"
                 ? "medium" : row.ticketStatus === "Progress"
                     ? "warning" : "success"}
