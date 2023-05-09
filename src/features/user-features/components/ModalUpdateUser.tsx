@@ -38,12 +38,17 @@ const ModalUpdateUser: React.FC<ModalUpdateUserProps> = ({ data, isOpen, onDidDi
             email: data?.email!,
             role: data?.role!,
             DepartmentId: data?.DepartmentId!,
-            SectionId: data?.SectionId!
+            SectionId: data?.SectionId!,
+            LineId: data?.LineId
         }));
     }, [data]);
 
+    useEffect(() => {
+        console.log({ formData });
+    }, [formData]);
+
     return (
-        <Modal isOpen={isOpen} title="Create User" onDidDismiss={() => onDidDismiss()}>
+        <Modal isOpen={isOpen} title="Update User" onDidDismiss={() => onDidDismiss()}>
             <form onSubmit={handleSubmit}>
                 <IonItem>
                     <IonInput type="text" value={formData?.badgeId} label="BadgeId" labelPlacement="floating" minlength={8} maxlength={8} onIonChange={(e) => handleChangeInput("badgeId", e.detail.value!)} required />
@@ -76,7 +81,7 @@ const ModalUpdateUser: React.FC<ModalUpdateUserProps> = ({ data, isOpen, onDidDi
                 </IonItem>
                 <IonItem>
                     <Suspense fallback={<IonSpinner name="crescent" />}>
-                        <SelectLine value={formData?.LineId} departmentId={formData?.DepartmentId} handleChange={(lineId) => handleChangeInput("LineId", lineId)} />
+                        <SelectLine value={formData?.LineId!} departmentId={formData?.DepartmentId} handleChange={(lineId) => handleChangeInput("LineId", lineId)} />
                     </Suspense>
                 </IonItem>
                 <IonButton type="submit" expand="block" className="mt-3">Submit</IonButton>

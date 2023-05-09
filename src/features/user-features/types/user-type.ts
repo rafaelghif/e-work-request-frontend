@@ -44,5 +44,5 @@ export interface UpdateUserInterface {
     role: string;
     DepartmentId: string;
     SectionId: string;
-    LineId: string;
+    LineId?: string;
 }
