@@ -27,13 +27,14 @@ const ContainerWorkRequestOldList: React.FC = () => {
                             <IonItem>
                                 <IonSelect label="Type" value={typeFilter} onIonChange={(e) => setTypeFilter(e.detail.value!)} labelPlacement="stacked">
                                     <IonSelectOption value="All">All</IonSelectOption>
+                                    <IonSelectOption value="FJ">FJ</IonSelectOption>
                                     <IonSelectOption value="MB">MB</IonSelectOption>
                                     <IonSelectOption value="MD">MD</IonSelectOption>
                                     <IonSelectOption value="MG">MG</IonSelectOption>
                                     <IonSelectOption value="MJ">MJ</IonSelectOption>
                                     <IonSelectOption value="MM">MM</IonSelectOption>
-                                    <IonSelectOption value="MN">MN</IonSelectOption>
                                     <IonSelectOption value="MP">MP</IonSelectOption>
+                                    <IonSelectOption value="NY">NY</IonSelectOption>
                                     <IonSelectOption value="WS">WS</IonSelectOption>
                                 </IonSelect>
                             </IonItem>

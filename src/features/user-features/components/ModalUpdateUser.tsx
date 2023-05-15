@@ -43,10 +43,6 @@ const ModalUpdateUser: React.FC<ModalUpdateUserProps> = ({ data, isOpen, onDidDi
         }));
     }, [data]);
 
-    useEffect(() => {
-        console.log({ formData });
-    }, [formData]);
-
     return (
         <Modal isOpen={isOpen} title="Update User" onDidDismiss={() => onDidDismiss()}>
             <form onSubmit={handleSubmit}>
