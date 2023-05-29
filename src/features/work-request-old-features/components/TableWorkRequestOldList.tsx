@@ -1,14 +1,21 @@
 import { TableColumn } from "react-data-table-component";
 import { useMemo } from "react";
 import Table from "../../../components/Table";
-import { WorkRequestOldInterface } from "../../../types/work-request-old-type";
+import { UpdateWorkRequestOldType, WorkRequestOldInterface } from "../../../types/work-request-old-type";
+import { IonButton } from "@ionic/react";
 
 interface TableWorkRequestOldListProps {
     data: WorkRequestOldInterface[];
+    handleClickBtnEdit: (data: UpdateWorkRequestOldType) => void;
 }
 
-const TableWorkRequestOldList: React.FC<TableWorkRequestOldListProps> = ({ data }) => {
+const TableWorkRequestOldList: React.FC<TableWorkRequestOldListProps> = ({ data, handleClickBtnEdit }) => {
     const columns: TableColumn<WorkRequestOldInterface>[] = useMemo(() => [{
+        name: "WO No.",
+        selector: row => row.woNo,
+        sortable: true,
+        wrap: true
+    }, {
         name: "Ticket Number",
         selector: row => row.ticketNo,
         sortable: true,
@@ -44,7 +51,11 @@ const TableWorkRequestOldList: React.FC<TableWorkRequestOldListProps> = ({ data 
         selector: row => row.ticketType,
         sortable: true,
         wrap: true
-    }], []);
+    }, {
+        name: "Edit",
+        cell: (row) => <IonButton color="warning" onClick={() => handleClickBtnEdit(row)}>Edit</IonButton>,
+        center: true
+    }], [handleClickBtnEdit]);
     return <Table columns={columns} data={data} responsive pagination striped highlightOnHover />;
 }
 

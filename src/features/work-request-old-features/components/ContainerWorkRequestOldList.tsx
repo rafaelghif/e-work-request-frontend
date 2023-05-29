@@ -3,6 +3,8 @@ import { useState } from "react";
 import Card from "../../../components/Card";
 import useQueryWorkRequestOldList from "../hooks/useQueryWorkRequestOldList";
 import TableWorkRequestOldList from "./TableWorkRequestOldList";
+import { UpdateWorkRequestOldType } from "../../../types/work-request-old-type";
+import ModalEditWorkRequestOld from "./ModalEditWorkRequestOld";
 
 const ContainerWorkRequestOldList: React.FC = () => {
     const [search, setSearch] = useState<string>("");
@@ -10,11 +12,20 @@ const ContainerWorkRequestOldList: React.FC = () => {
     const [monthFilter, setMonthFilter] = useState<string>((new Date().getMonth() + 1).toString());
     const [typeFilter, setTypeFilter] = useState<string>("All");
     const { isLoading, data, isError, refetch } = useQueryWorkRequestOldList(search, typeFilter, yearFilter, monthFilter);
+    const [wo, setWo] = useState<UpdateWorkRequestOldType>();
+    const [isOpenModalEdit, setIsOpenModalEdit] = useState<boolean>(false);
 
     const handleRefresh = async (event: CustomEvent<RefresherEventDetail>) => {
         refetch();
         event.detail.complete();
     }
+
+    const handleClickBtnEdit = (data: UpdateWorkRequestOldType) => {
+        setWo(data);
+        setIsOpenModalEdit(true);
+    }
+
+
     return (
         <>
             <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
@@ -87,12 +98,13 @@ const ContainerWorkRequestOldList: React.FC = () => {
                             {isLoading ? (
                                 <IonSpinner name="crescent" color="primary" />
                             ) : (
-                                <TableWorkRequestOldList data={isError ? [] : data?.data} />
+                                <TableWorkRequestOldList data={isError ? [] : data?.data} handleClickBtnEdit={(data) => handleClickBtnEdit(data)} />
                             )}
                         </IonCol>
                     </IonRow>
                 </IonGrid>
             </Card>
+            <ModalEditWorkRequestOld data={wo} isOpen={isOpenModalEdit} onDidDismiss={() => setIsOpenModalEdit(false)} />
         </>
     );
 }

@@ -10,7 +10,7 @@ const ContainerDashboard: React.FC = () => {
     return (
         <IonGrid>
             <IonRow>
-                <IonCol size="12" sizeLg="6">
+                {/* <IonCol size="12" sizeLg="6">
                     <Card title="Backlog Status" headerColor="light">
                         <Suspense fallback={<IonSpinner name="crescent" />}>
                             <ChartBackLog />
@@ -30,7 +30,7 @@ const ContainerDashboard: React.FC = () => {
                             <ChartDueDate />
                         </Suspense>
                     </Card>
-                </IonCol>
+                </IonCol> */}
             </IonRow>
         </IonGrid>
     );
