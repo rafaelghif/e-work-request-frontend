@@ -28,6 +28,12 @@ const TableWorkRequestReceive: React.FC<TableWorkRequestReceiveProps> = ({ data,
         wrap: true,
         grow: 2
     }, {
+        name: "Jig Tool No",
+        selector: row => row.jigToolNo,
+        sortable: true,
+        wrap: true,
+        grow: 2
+    }, {
         name: "Qty",
         selector: row => row.qty,
         sortable: true,
