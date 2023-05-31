@@ -15,7 +15,7 @@ const SelectMultipleDepartment: React.FC<SelectMultipleDepartmentProps> = ({ val
             {isLoading ? (
                 <IonSelectOption value="">Select Department</IonSelectOption>
             ) : data?.data?.map((res: DepartmentInterface) => (
-                <IonSelectOption value={res.id} key={res.id}>{res.name}</IonSelectOption>
+                <IonSelectOption value={res.id} key={res.id}>{res.name} ({res.abbreviation})</IonSelectOption>
             ))}
         </IonSelect>
     );
