@@ -4,6 +4,7 @@ import Table from "../../../components/Table";
 import { formatDateTime } from "../../../libs/date-fns";
 import { IonButton, IonText } from "@ionic/react";
 import { WorkRequestInterface } from "../../../types/work-request-type";
+import LinkAttachment from "../../../components/LinkAttachment";
 
 interface TableWorkRequestReceiveProps {
     data: WorkRequestInterface[];
@@ -35,6 +36,11 @@ const TableTicketRequest: React.FC<TableWorkRequestReceiveProps> = ({ data, hand
     }, {
         name: "Expect Due Date",
         selector: row => row.expectDueDate,
+        sortable: true,
+        wrap: true
+    }, {
+        name: "Attachment File",
+        cell: row => <LinkAttachment attachmentFile={row.attachmentFile} />,
         sortable: true,
         wrap: true
     }, {
