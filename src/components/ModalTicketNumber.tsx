@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useQueryTicketNumber from "../hooks/useQueryTicketNumber";
 import Modal from "./Modal";
 import { IonButton, IonSearchbar, IonSpinner } from "@ionic/react";
@@ -13,10 +13,6 @@ interface ModalTicketNumberProps {
 const ModalTicketNumber: React.FC<ModalTicketNumberProps> = ({ isOpen, onDidDismiss, onSelect }) => {
     const [search, setSearch] = useState<string>("");
     const { isLoading, data } = useQueryTicketNumber(search);
-
-    useEffect(() => {
-        return () => setSearch("");
-    });
     return (
         <Modal title="Ticket Number" isOpen={isOpen} onDidDismiss={() => onDidDismiss()}>
             <IonSearchbar value={search} debounce={1500} onIonChange={(e) => setSearch(e.detail.value!)} />
