@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import Table from "../../../components/Table";
 import { TicketDetailInterface } from "../../../types/work-request-type";
 import { IonText } from "@ionic/react";
+import ContainerDetail from "./ContainerDetail";
 
 interface TableDetailChartProps {
     data: TicketDetailInterface[];
@@ -46,7 +47,7 @@ const TableDetailChart: React.FC<TableDetailChartProps> = ({ data }) => {
         cell: row => <IonText color={row.assigneeStatus === "Open" ? "danger" : row.assigneeStatus === "Progress" ? "warning" : "medium"}>{row.assigneeStatus}</IonText>,
         wrap: true
     }], []);
-    return <Table columns={columns} data={data} responsive pagination striped highlightOnHover />;
+    return <Table columns={columns} data={data} responsive pagination striped highlightOnHover expandableRows expandableRowsComponent={ContainerDetail} />;
 }
 
 export default TableDetailChart;
