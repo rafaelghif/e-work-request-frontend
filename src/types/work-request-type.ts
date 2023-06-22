@@ -84,3 +84,19 @@ export interface TicketInterface {
     expectDueDate: string;
     attachmentFile: string;
 }
+
+export interface TicketDetailInterface {
+    ticketId: string;
+    registrationNumberId: string;
+    registrationNumberFormat: string;
+    assigneeDepartmentId: string;
+    ticketNumber: string;
+    workNumber: string;
+    description: string;
+    jigToolNo: string;
+    qty: number;
+    expectDueDate: string;
+    requesterDepartment: string;
+    ticketStatus: "Waiting Approve" | "Request" | "Progress" | "Send to the Requestor" | "Complete" | "Reject";
+    assigneeStatus: "Open" | "Pending" | "Progress" | "Complete" | "Reject";
+}
