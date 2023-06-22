@@ -11,7 +11,7 @@ const SelectMonth: React.FC<SelectMonthInterface> = ({ value, onChange }) => {
         <IonItem className="w-full">
             <IonSelect label="Month" labelPlacement="floating" value={value} onIonChange={(e) => onChange(e.detail.value!)}>
                 {months.map((month, index) => (
-                    <IonSelectOption key={`select-month-${month}`} value={index.toString()}>{month}</IonSelectOption>
+                    <IonSelectOption key={`select-month-${month}`} value={index === 0 ? "All" : index.toString()}>{month}</IonSelectOption>
                 ))}
             </IonSelect>
         </IonItem>
