@@ -44,7 +44,7 @@ const TableDetailChart: React.FC<TableDetailChartProps> = ({ data }) => {
         wrap: true
     }, {
         name: "Status",
-        cell: row => <IonText color={row.assigneeStatus === "Open" ? "danger" : row.assigneeStatus === "Progress" ? "warning" : "medium"}>{row.assigneeStatus}</IonText>,
+        cell: row => <IonText color={row.ticketStatus === "Send to the Requestor" ? "danger" : row.ticketStatus === "Progress" ? "warning" : "medium"}>{row.ticketStatus}</IonText>,
         wrap: true
     }], []);
     return <Table columns={columns} data={data} responsive pagination striped highlightOnHover expandableRows expandableRowsComponent={ContainerDetail} />;
