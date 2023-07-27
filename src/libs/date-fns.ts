@@ -31,7 +31,7 @@ export const formatDate = (stringDate: string) => {
  * @returns The formatted date string.
  */
 export const formatMonthYearFull = (stringDate: string) => {
-    return format(parseISO(stringDate), "LLLL wo, yyyy");
+    return format(parseISO(stringDate), "LLLL do, yyyy");
 }
 
 export const formatDayTimeFull = (stringDate: string) => {

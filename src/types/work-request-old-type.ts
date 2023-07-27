@@ -8,6 +8,7 @@ export interface WorkRequestOldInterface {
     receivedDate: string;
     completedDate: string;
     ticketType: string;
+    ticketStatus: "OPEN" | "COMPLETE";
     createdBy: string;
     updatedBy: string;
     createdAt: string;

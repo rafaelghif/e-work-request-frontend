@@ -2,7 +2,7 @@ import { TableColumn } from "react-data-table-component";
 import { useMemo } from "react";
 import Table from "../../../components/Table";
 import { UpdateWorkRequestOldType, WorkRequestOldInterface } from "../../../types/work-request-old-type";
-import { IonButton } from "@ionic/react";
+import { IonButton, IonText } from "@ionic/react";
 
 interface TableWorkRequestOldListProps {
     data: WorkRequestOldInterface[];
@@ -28,23 +28,19 @@ const TableWorkRequestOldList: React.FC<TableWorkRequestOldListProps> = ({ data,
     }, {
         name: "Description",
         selector: row => row.description,
-        sortable: true,
         wrap: true,
         grow: 2
     }, {
         name: "Remark",
         selector: row => row.remark,
-        sortable: true,
         wrap: true
     }, {
         name: "Receive Date",
         selector: row => row.receivedDate,
-        sortable: true,
         wrap: true
     }, {
         name: "Complete Date",
         selector: row => row.completedDate,
-        sortable: true,
         wrap: true
     }, {
         name: "Type",
@@ -52,8 +48,12 @@ const TableWorkRequestOldList: React.FC<TableWorkRequestOldListProps> = ({ data,
         sortable: true,
         wrap: true
     }, {
+        name: "Status",
+        cell: row => <IonText color={row.ticketStatus === "COMPLETE" ? "success" : "danger"}>{row.ticketStatus}</IonText>,
+        wrap: true
+    }, {
         name: "Edit",
-        cell: (row) => <IonButton color="warning" onClick={() => handleClickBtnEdit(row)}>Edit</IonButton>,
+        cell: (row) => <IonButton color="warning" onClick={() => handleClickBtnEdit(row)} hidden={row.ticketStatus === "COMPLETE"}>Edit</IonButton>,
         center: true
     }], [handleClickBtnEdit]);
     return <Table columns={columns} data={data} responsive pagination striped highlightOnHover />;
