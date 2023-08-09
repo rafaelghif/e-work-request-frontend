@@ -10,7 +10,7 @@ interface TableWorkRequestReceiveProps {
     handleClickBtnReceive: (data: string) => void;
 }
 
-const TableWorkRequestReceive: React.FC<TableWorkRequestReceiveProps> = ({ data, handleClickBtnReceive }) => {
+const TableWorkRequestReceive: React.FC<TableWorkRequestReceiveProps> = ({ data, handleClickBtnReceive }) => {    
     const columns: TableColumn<WorkRequestInterface>[] = useMemo(() => [{
         name: "Ticket Number",
         selector: row => row.ticketNumber,
@@ -45,7 +45,7 @@ const TableWorkRequestReceive: React.FC<TableWorkRequestReceiveProps> = ({ data,
         wrap: true
     }, {
         name: "Send to Requestor Date",
-        selector: row => formatDateTime(row.sendToRequestorDate),
+        selector: row => row.sendToRequestorDate ? formatDateTime(row.sendToRequestorDate) : "",
         sortable: true,
         wrap: true
     }, {
