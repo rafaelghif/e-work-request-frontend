@@ -19,6 +19,15 @@ export const getDepartmentActiveService = async (): Promise<any> => {
     }
 }
 
+export const getTicketAssigneeDepartment = async (ticketId: string): Promise<any> => {
+    try {
+        const response = await axiosGet(`/department/ticketAssignee/ticketId/${ticketId}`);
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
 export const createDepartmentService = async (payload: CreateDepartmentInterface): Promise<any> => {
     try {
         const response = await axiosPost("/department", payload);

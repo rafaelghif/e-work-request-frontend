@@ -8,9 +8,10 @@ import { WorkRequestInterface } from "../../../types/work-request-type";
 interface TableWorkRequestReceiveProps {
     data: WorkRequestInterface[];
     handleClickBtnReceive: (data: string) => void;
+    handleClickBtnSendBackToAssignee: (data: string) => void;
 }
 
-const TableWorkRequestReceive: React.FC<TableWorkRequestReceiveProps> = ({ data, handleClickBtnReceive }) => {    
+const TableWorkRequestReceive: React.FC<TableWorkRequestReceiveProps> = ({ data, handleClickBtnReceive, handleClickBtnSendBackToAssignee }) => {
     const columns: TableColumn<WorkRequestInterface>[] = useMemo(() => [{
         name: "Ticket Number",
         selector: row => row.ticketNumber,
@@ -72,11 +73,18 @@ const TableWorkRequestReceive: React.FC<TableWorkRequestReceiveProps> = ({ data,
         wrap: true
     }, {
         name: "Action",
-        cell: row => <IonButton fill="clear" onClick={() => handleClickBtnReceive(row.id)}>Receive</IonButton>,
+        cell: row => (
+            <>
+                <IonButton fill="clear" onClick={() => handleClickBtnReceive(row.id)}>Receive</IonButton>
+                <IonButton fill="clear" color="danger" onClick={() => handleClickBtnSendBackToAssignee(row.id)}>Send back to assignee</IonButton>
+            </>
+        ),
         sortable: true,
         wrap: true,
-        center: true
-    }], [handleClickBtnReceive]);
+        center: true,
+        width: "350px"
+        
+    }], [handleClickBtnReceive, handleClickBtnSendBackToAssignee]);
     return <Table columns={columns} data={data} responsive pagination striped highlightOnHover />;
 }
 

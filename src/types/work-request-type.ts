@@ -100,3 +100,9 @@ export interface TicketDetailInterface {
     ticketStatus: "Waiting Approve" | "Request" | "Progress" | "Send to the Requestor" | "Complete" | "Reject";
     assigneeStatus: "Open" | "Pending" | "Progress" | "Complete" | "Reject";
 }
+
+export type SendBackToAssignee = {
+    ticketId: string;
+    ticketAssigneeIds: string[];
+    remark: string;
+};

@@ -23,6 +23,7 @@ const WorkRequestReceive = lazy(() => import("../pages/WorkRequestReceive"));
 const WorkRequestList = lazy(() => import("../pages/WorkRequestList"));
 const WorkRequestListOld = lazy(() => import("../pages/WorkRequestListOld"));
 const WorkRequestFormEdit = lazy(() => import("../pages/WorkRequestFormEdit"));
+const Jig = lazy(() => import("../pages/Jigs"));
 
 const MainRouter: React.FC = () => {
     const isAuth = useAppSelector((state) => state.auth);
@@ -44,6 +45,7 @@ const MainRouter: React.FC = () => {
                         <Route exact path="/work-request-receive" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestReceive} />} />
                         <Route exact path="/work-request-list" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestList} />} />
                         <Route exact path="/work-request-list-old" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestListOld} />} />
+                        <Route exact path="/jig" component={() => <PrivateRoute isAuth={isAuth} component={Jig} />} />
                     </Suspense>
                     <Route exact path="/">
                         <Redirect to={isAuth ? "/dashboard" : "/login"} />

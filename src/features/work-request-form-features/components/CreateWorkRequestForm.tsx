@@ -63,7 +63,7 @@ const CreateWorkRequestForm: React.FC = () => {
                 <IonInput type="text" value={formData.jigToolNo} label="M/C Jig Tool No" labelPlacement="floating" onIonChange={(e) => handleChangeInput("jigToolNo", e.detail.value!)} />
             </IonItem>
             <IonItem>
-                <IonInput type="number" value={formData.qty} label="Qty" labelPlacement="floating" onIonChange={(e) => handleChangeInput("qty", parseInt(e.detail.value?.toString()!))} />
+                <IonInput type="number" value={formData.qty} label="Qty" labelPlacement="floating" onIonChange={(e) => handleChangeInput("qty", parseInt(e.detail.value?.toString()!))} min={0} />
             </IonItem>
             <IonItem>
                 <IonInput type="date" value={formData.expectDueDate} label="Except Due Date" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("expectDueDate", e.detail.value!)} />

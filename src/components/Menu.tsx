@@ -1,6 +1,6 @@
 import { IonContent, IonFooter, IonHeader, IonImg, IonMenu, IonSpinner, IonTitle, IonToolbar } from "@ionic/react";
 import { lazy, Suspense } from "react";
-import { fileTrayFullOutline, homeOutline, logOutOutline, radioButtonOffOutline, serverOutline } from "ionicons/icons";
+import { fileTrayFullOutline, homeOutline, libraryOutline, logOutOutline, radioButtonOffOutline, serverOutline } from "ionicons/icons";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import profilePicture from "../assets/images/profile.png";
 import { clearUser } from "../redux/slice/userSlice";
@@ -70,6 +70,9 @@ const Menu: React.FC = () => {
                         </Suspense>
                         <MenuItem url="/work-request-list" text="Work Request List" icon={radioButtonOffOutline} />
                         <MenuItem url="/work-request-list-old" text="Work Request List Old" icon={radioButtonOffOutline} />
+                    </MenuItemDropDown>
+                    <MenuItemDropDown headerText="Ledger" headerIcon={libraryOutline} >
+                        <MenuItem url="/jig" text="Jig" icon={radioButtonOffOutline} />
                     </MenuItemDropDown>
                     <MenuItem url="/login" text="Logout" icon={logOutOutline} handleClick={() => handleClickBtnLogout()} />
                 </div>

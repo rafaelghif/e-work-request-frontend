@@ -18,6 +18,12 @@ const LoginContainer: React.FC = () => {
         setFormData(old => ({ ...old, [key]: value }));
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            mutate(formData);
+        }
+    }
+
     return (
         <div className="flex items-center justify-center w-screen h-screen bg-slate-100">
             <div className="bg-white h-[21em] w-11/12 md:w-1/2 rounded-lg shadow-lg p-5">
@@ -28,10 +34,10 @@ const LoginContainer: React.FC = () => {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <IonItem>
-                            <IonInput type="text" value={formData.badgeId} label="BadgeId" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("badgeId", e.detail.value!)} />
+                            <IonInput type="text" value={formData.badgeId} label="BadgeId" labelPlacement="stacked" onIonInput={(e) => handleChangeInput("badgeId", e.detail.value!)} required />
                         </IonItem>
                         <IonItem>
-                            <IonInput type="password" value={formData.password} label="Password" labelPlacement="stacked" onIonChange={(e) => handleChangeInput("password", e.detail.value!)} />
+                            <IonInput type="password" value={formData.password} label="Password" labelPlacement="stacked" onKeyDown={(e) => handleKeyDown(e)} onIonInput={(e) => handleChangeInput("password", e.detail.value!)} required />
                         </IonItem>
                         <IonButton type="submit" expand="block" className="mt-3">Login</IonButton>
                     </form>

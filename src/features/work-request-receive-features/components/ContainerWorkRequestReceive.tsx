@@ -5,6 +5,7 @@ import { useAppSelector } from "../../../redux/hook";
 import useQueryWorkRequestReceive from "../hooks/useQueryWorkRequestReceive";
 import useReceiveTicket from "../hooks/useReceiveTicket";
 import TableWorkRequestReceive from "./TableWorkRequestReceive";
+import ModalSendBackToAssignee from "./ModalSendBackToAssignee";
 
 const ContainerWorkRequestReceive: React.FC = () => {
     const [search, setSearch] = useState<string>("");
@@ -12,6 +13,8 @@ const ContainerWorkRequestReceive: React.FC = () => {
     const { isLoading, data, isError, refetch } = useQueryWorkRequestReceive(user.id, search);
     const { mutate } = useReceiveTicket();
     const [presentAlert] = useIonAlert();
+    const [ticketId, setTicketId] = useState<string>("");
+    const [isOpenModalSendBackToAssignee, setIsOpenModalSendBackToAssignee] = useState<boolean>(false);
 
     const handleClickBtnReceive = (ticketId: string) => {
         presentAlert({
@@ -27,8 +30,12 @@ const ContainerWorkRequestReceive: React.FC = () => {
                     },
                 },
             ],
-        })
+        });
+    }
 
+    const handleClickBtnSendBackToAssignee = (ticketId: string) => {
+        setTicketId(ticketId);
+        setIsOpenModalSendBackToAssignee(true);
     }
 
     const handleReceive = (ticketId: string) => {
@@ -55,12 +62,13 @@ const ContainerWorkRequestReceive: React.FC = () => {
                             {isLoading ? (
                                 <IonSpinner name="crescent" color="primary" />
                             ) : (
-                                <TableWorkRequestReceive data={isError ? [] : data.data} handleClickBtnReceive={(ticketId) => handleClickBtnReceive(ticketId)} />
+                                <TableWorkRequestReceive data={isError ? [] : data.data} handleClickBtnReceive={(ticketId) => handleClickBtnReceive(ticketId)} handleClickBtnSendBackToAssignee={(ticketId) => handleClickBtnSendBackToAssignee(ticketId)} />
                             )}
                         </IonCol>
                     </IonRow>
                 </IonGrid>
             </Card>
+            <ModalSendBackToAssignee isOpen={isOpenModalSendBackToAssignee} onDidDismiss={() => setIsOpenModalSendBackToAssignee(false)} ticketId={ticketId} />
         </>
     );
 }

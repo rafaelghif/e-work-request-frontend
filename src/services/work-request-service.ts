@@ -2,6 +2,7 @@ import { HeadActionTicketInterface } from "../features/ticket-request-features/t
 import { AssignTicketInterface, PicActionTicketInterface } from "../features/work-request-features/types/work-request-type";
 import { EditWorkRequestInterface } from "../features/work-request-form-edit-features/types/work-request-form-edit-type";
 import { CreateWorkRequestFormInterface } from "../features/work-request-form-features/types/work-request-form-type";
+import { SendBackToAssignee } from "../types/work-request-type";
 import { axiosGet, axiosPatch, axiosPost } from "./api-service";
 
 export const getWorkRequestCountService = async (): Promise<any> => {
@@ -107,6 +108,15 @@ export const picActionTicketService = async (payload: PicActionTicketInterface):
 export const receiveTicketService = async (payload: string): Promise<any> => {
     try {
         const response = await axiosPatch("/work-request/receive", { id: payload });
+        return Promise.resolve(response);
+    } catch (err: any) {
+        return Promise.reject(err);
+    }
+}
+
+export const sendBackService = async (payload: SendBackToAssignee): Promise<any> => {
+    try {
+        const response = await axiosPatch("/work-request/sendBack", payload);
         return Promise.resolve(response);
     } catch (err: any) {
         return Promise.reject(err);
