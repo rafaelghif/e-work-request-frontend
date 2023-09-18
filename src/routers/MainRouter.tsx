@@ -45,7 +45,7 @@ const MainRouter: React.FC = () => {
                         <Route exact path="/work-request-receive" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestReceive} />} />
                         <Route exact path="/work-request-list" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestList} />} />
                         <Route exact path="/work-request-list-old" component={() => <PrivateRoute isAuth={isAuth} component={WorkRequestListOld} />} />
-                        <Route exact path="/jig" component={() => <PrivateRoute isAuth={isAuth} component={Jig} />} />
+                        <Route exact path="/jig" component={() => <PrivateRoute isAuth={isAuth} component={Jig} strictRole={["SUPER USER"]} />} />
                     </Suspense>
                     <Route exact path="/">
                         <Redirect to={isAuth ? "/dashboard" : "/login"} />
