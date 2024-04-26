@@ -5,54 +5,86 @@ import { IonText } from "@ionic/react";
 import ContainerWorkRequestListDetail from "./ContainerWorkRequestListDetail";
 import { WorkRequestInterface } from "../../../types/work-request-type";
 import LinkAttachment from "../../../components/LinkAttachment";
+import { getStatusColor } from "../../../helpers/Color";
 
 interface TableWorkRequestListProps {
-    data: WorkRequestInterface[];
+  data: WorkRequestInterface[];
 }
 
-const TableWorkRequestList: React.FC<TableWorkRequestListProps> = ({ data }) => {
-    const columns: TableColumn<WorkRequestInterface>[] = useMemo(() => [{
+const TableWorkRequestList: React.FC<TableWorkRequestListProps> = ({
+  data,
+}) => {
+  const columns: TableColumn<WorkRequestInterface>[] = useMemo(
+    () => [
+      {
         name: "Ticket Number",
-        selector: row => row.ticketNumber,
+        selector: (row) => row.ticketNumber,
         sortable: true,
-        wrap: true
-    }, {
+        wrap: true,
+      },
+      {
         name: "W/No.",
-        selector: row => row.workNumber,
+        selector: (row) => row.workNumber,
         sortable: true,
-        wrap: true
-    }, {
+        wrap: true,
+      },
+      {
         name: "Description",
-        selector: row => row.description,
+        selector: (row) => row.description,
         sortable: true,
         wrap: true,
-        grow: 2
-    }, {
+        grow: 2,
+      },
+      {
         name: "Jig Tool No",
-        selector: row => row.jigToolNo,
+        selector: (row) => row.jigToolNo,
         sortable: true,
         wrap: true,
-        grow: 2
-    }, {
+        grow: 2,
+      },
+      {
         name: "Qty",
-        selector: row => row.qty,
+        selector: (row) => row.qty,
         sortable: true,
-        wrap: true
-    }, {
+        wrap: true,
+      },
+      {
         name: "Attachment File",
-        cell: row => <LinkAttachment attachmentFile={row.attachmentFile} />,
+        cell: (row) => <LinkAttachment attachmentFile={row.attachmentFile} />,
         sortable: true,
-        wrap: true
-    }, {
+        wrap: true,
+      },
+      {
         name: "Ticket Status",
-        cell: row => <IonText color={row.ticketStatus === "Request" || row.ticketStatus === "Reject" || row.ticketStatus === "Waiting Approve"
-            ? "danger" : row.ticketStatus === "Send to the Requestor"
-                ? "medium" : row.ticketStatus === "Progress"
-                    ? "warning" : "success"}
-        >{row.ticketStatus}</IonText>,
-        wrap: true
-    }], []);
-    return <Table columns={columns} data={data} responsive pagination striped highlightOnHover expandableRows expandableRowsComponent={ContainerWorkRequestListDetail} />;
-}
+        cell: (row) => (
+          <IonText color={getStatusColor(row.ticketStatus)}>
+            {row.ticketStatus}
+          </IonText>
+        ),
+        wrap: true,
+        conditionalCellStyles: [
+          {
+            when: (row: WorkRequestInterface) =>
+              row.ticketStatus === "Send to the Requestor",
+            style: { backgroundColor: "red", color: "white" },
+          },
+        ],
+      },
+    ],
+    []
+  );
+  return (
+    <Table
+      columns={columns}
+      data={data}
+      responsive
+      pagination
+      striped
+      highlightOnHover
+      expandableRows
+      expandableRowsComponent={ContainerWorkRequestListDetail}
+    />
+  );
+};
 
 export default TableWorkRequestList;
