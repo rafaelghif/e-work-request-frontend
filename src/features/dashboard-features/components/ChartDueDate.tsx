@@ -91,10 +91,6 @@ const ChartDueDate: React.FC<ChartDueDateProps> = ({ year, month }) => {
     }
   }, [data]);
 
-  useEffect(() => {
-    console.log({ series, categories });
-  }, [series, categories]);
-
   return (
     <>
       <Chart type="bar" series={series} options={options} height={400} />
